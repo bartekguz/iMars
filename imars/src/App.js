@@ -3,19 +3,28 @@ import './App.css';
 import Navigation from "./Homepage/components/Navigation/Navigation";
 import Logo from "./Homepage/components/Logo/Logo";
 import Signin from "./Homepage/components/Signin/Signin";
+import Register from "./Homepage/components/Register/Register";
 
 const App = () => {
     const [route, setRoute] = useState('signin');
+    const [isSignedIn, setSignedIn] = useState('false');
 
-    const onClick = () => {
-        setRoute(route+1);
+    const onRouteChange = (route) => {
+        if (route === 'signout') {
+            setSignedIn(false);
+        } else if (route === 'home') {
+            setSignedIn(true);
+        }
+        setRoute(route);
     }
+
     return (
         <div className="App">
-            <Navigation />
+            <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange}/>
+            <Logo />
             { route === "signin"
-                ? <Signin />
-                : <Logo />
+                ? <Signin onRouteChange={onRouteChange}/>
+                : <Register />
             }
         </div>
     )
