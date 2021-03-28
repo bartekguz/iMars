@@ -1,6 +1,10 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url("Homepage/tlo.jpg");
     font-family: Lato, sans-serif;
+    background: url("tlo.jpg") no-repeat fixed center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
