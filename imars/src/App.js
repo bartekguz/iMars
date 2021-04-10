@@ -1,18 +1,27 @@
-import React, { useEffect, useState} from 'react';
-import './App.css';
-import Navigation from "./Homepage/components/Navigation/Navigation";
-import Logo from "./Homepage/components/Logo/Logo";
-import Signin from "./Homepage/components/Signin/Signin";
-import Register from "./Homepage/components/Register/Register";
+import React, { useState, useEffect } from 'react';
+import Navigation from "./components/start/Navigation/Navigation";
+import Signin from "./components/start/Signin/Signin";
+import Register from "./components/start/Register/Register";
+import Home from "./components/start/Home/Home";
+import Main from "./pages/main/Main";
+
 
 const App = () => {
-    const [route, setRoute] = useState('signin');
-    const [isSignedIn, setSignedIn] = useState('false');
+    const [route, setRoute] = useState('home');
+    const [isSignedIn, setSignedIn] = useState(false);
+
+    // useEffect(() => {
+    //     fetch('http://localhost:8000/api/fun')
+    //         .then(response => response.json())
+    //         .then(console.log);
+    // })
 
     const onRouteChange = (route) => {
-        if (route === 'signout') {
+        if (route === 'home') {
             setSignedIn(false);
-        } else if (route === 'home') {
+        } else if (route === 'signin') {
+            setSignedIn(false);
+        } else if (route === 'main') {
             setSignedIn(true);
         }
         setRoute(route);
@@ -21,15 +30,16 @@ const App = () => {
     return (
         <div className="App">
             <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange}/>
-            <Logo />
-            { route === "signin"
-                ? <Signin onRouteChange={onRouteChange}/>
-                : <Register />
+            {(route === "home")
+                ? <Home/>
+                : (route === "signin")
+                    ? <Signin onRouteChange={onRouteChange}/>
+                    : (route === "register")
+                        ? <Register onRouteChange={onRouteChange}/>
+                        : <Main />
             }
         </div>
     )
 }
-
-
 
 export default App;
