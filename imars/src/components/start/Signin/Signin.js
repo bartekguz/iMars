@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import emailpng from '../../../assets/email.png';
-import keypng from '../../../assets/key.png';
+import React, { useState, useEffect } from 'react';
+import emailpng from '../../../assets/register/email.png';
+import keypng from '../../../assets/register/key.png';
 
-const Signin = ({ onRouteChange }) => {
+const Signin = ({ onRouteChange, loadUser}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [data, setdata] = useState(false);
 
     const onEmailChange = (event) => {
         setEmail(event.target.value)
@@ -17,6 +18,7 @@ const Signin = ({ onRouteChange }) => {
     const onSubmitSignin = async () => {
         let obj = {email, password};
 
+        // eslint-disable-next-line no-unused-vars
         let result = await fetch("http://localhost:8000/api/login", {
             method: "POST",
             body: JSON.stringify(obj),
@@ -27,8 +29,11 @@ const Signin = ({ onRouteChange }) => {
         })
             .then(response => response.json())
             .then(user => {
-                if (user.id) {
+                if (user.user_id) {
+                    loadUser(user);
                     onRouteChange('main');
+                } else {
+                    setdata(true);
                 }
             })
     }
@@ -64,6 +69,13 @@ const Signin = ({ onRouteChange }) => {
                                 />
                             </div>
                         </fieldset>
+
+                        {data &&
+                            <div>
+                                <p className="f3 red tc">Invalid email or password!</p>
+                            </div>
+                        }
+
                         <div>
                             <input onClick={onSubmitSignin} className="b br4 w-100 pv2 input-reset ba b--black bg-black tracked dim pointer f5 db center white" type="submit" value="LOGIN" />
                         </div>

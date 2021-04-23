@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="936d10d7-279a-4b03-95ff-565a4a53b0a9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/imars/src/components/start/Navigation/Navigation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imars/src/components/start/Register/Register.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imars/src/components/start/Signin/Signin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/imars/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/imars/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imars/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/imars/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imars/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/imars/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imars/src/Homepage/components/Logo/Logo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/imars/src/Homepage/components/Logo/imarslogo.png" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/assets/imarslogo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imars/src/Homepage/components/Navigation/Navigation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/imars/src/Homepage/components/Register/Register.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/imars/src/Homepage/components/Signin/Signin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/imars/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imars/src/tlo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/assets/tlo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +32,7 @@
       <option name="presentableId" value="Default" />
       <updated>1617991176229</updated>
       <workItem from="1617991178167" duration="2049000" />
-      <workItem from="1618048427805" duration="7184000" />
+      <workItem from="1618048427805" duration="8232000" />
     </task>
     <servers />
   </component>

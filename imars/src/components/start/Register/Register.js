@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import emailpng from '../../../assets/email.png';
-import keypng from '../../../assets/key.png';
-import namepng from '../../../assets/name.png';
-import datepng from '../../../assets/date.png';
+import emailpng from '../../../assets/register/email.png';
+import keypng from '../../../assets/register/key.png';
+import namepng from '../../../assets/register/name.png';
+import datepng from '../../../assets/register/date.png';
 
-const Register = ({ onRouteChange }) => {
+const Register = ({ onRouteChange, loadUser}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [lastname, setLastname] = useState("");
+    const [date_of_birth, setDateofbirth] = useState("");
+
 
     const onEmailChange = (event) => {
         setEmail(event.target.value)
@@ -16,8 +20,19 @@ const Register = ({ onRouteChange }) => {
         setPassword(event.target.value)
     }
 
+    const onNameChange = (event) => {
+        let value = event.target.value;
+        let str = value.split(' ');
+        setName(str[0]);
+        setLastname(str[1]);
+    }
+
+    const onDateChange = (event) => {
+        setDateofbirth(event.target.value)
+    }
+
     const onSubmitRegister = async () => {
-        let obj = {email, password};
+        let obj = {email, password, name, lastname, date_of_birth};
 
         let result = await fetch("http://localhost:8000/api/register", {
             method: "POST",
@@ -27,10 +42,14 @@ const Register = ({ onRouteChange }) => {
                 "Accept": 'application/json'
             }
         })
-
-        result = await result.json();
-
-        onRouteChange('main');
+            .then(response => response.json())
+            .then(user => {
+                console.log(user);
+                if (user.id) {
+                    loadUser(user);
+                    onRouteChange('main');
+                }
+            })
     }
 
     return (
@@ -46,6 +65,7 @@ const Register = ({ onRouteChange }) => {
                                    name="name" id="name"
                                    placeholder="Enter your Name"
                                    style={{background: `url(${namepng}) no-repeat scroll 5px`, paddingLeft: '40px'}}
+                                   onChange={onNameChange}
                             />
                         </div>
                         <div className="mt3">
@@ -55,6 +75,7 @@ const Register = ({ onRouteChange }) => {
                                    name="date-of-birth"
                                    id="date-of-birth"
                                    style={{boxSizing: 'border-box', background: `url(${datepng}) no-repeat scroll 5px`, paddingLeft: '40px'}}
+                                   onChange={onDateChange}
                             />
                         </div>
                         <div className="mt3">
