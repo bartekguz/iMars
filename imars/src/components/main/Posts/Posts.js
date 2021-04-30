@@ -1,18 +1,16 @@
 import React from 'react';
-import Body from "./Body";
-import Image from "./Image";
-import User from "./User";
-import Rockets from "./Rockets";
+import Body from "../../share/Body";
+import Image from "../../share/Image";
+import User from "../../share/User";
+import Rockets from "../../share/Rockets";
+import './Posts.css';
+import Share from "../../share/Share";
 
-const Posts = ({ post }) => {
+const Posts = ({ posts }) => {
     return (
-        <div className="outline" style={{width: "60rem", marginLeft: "18rem"}} >
-            <div className="bg-white-90 shadow-5" style={{borderRadius: "1rem"}}>
-                <User post={post}/>
-                <hr size="1" width="97%"/>
-                <Body post={post}/>
-                <Image post={post}/>
-                <Rockets post={post}/>
+        <div className="outline centerPosts">
+            <div className="centerPostsWrapper bg-white-90 shadow-5">
+                <Share />
             </div>
         </div>
     );

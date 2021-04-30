@@ -10,10 +10,7 @@ const Footer = () => {
                     <a href="/privacy/" title="Privacy" className="f6 dib ph2 link mid-gray dim">Privacy</a>
                 </div>
             </div>
-
         )
 };
-
-
 
 export default Footer;

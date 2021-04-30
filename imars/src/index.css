@@ -4,16 +4,12 @@ body {
     width: 100%;
     min-height: 100%;
     font-family: Lato, sans-serif;
-    background: url("assets/tlo.jpg") no-repeat fixed center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
 
 html, body, #app, #app>div {
     height: 100%;
 }
+
 *:focus {
     outline: none;
 }

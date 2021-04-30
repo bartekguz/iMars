@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import Navigation from "./components/start/Navigation/Navigation";
+import Navigation from "./components/alwaysExists/Navigation/Navigation";
 import Signin from "./components/start/Signin/Signin";
 import Register from "./components/start/Register/Register";
 import Home from "./components/start/Home/Home";
 import Menu from "./components/main/Menu/Menu";
 import Posts from "./components/main/Posts/Posts";
-import GameRecords from "./components/main/rightBars/GameRecords";
-import Friends from "./components/main/rightBars/Friends";
-import Footer from "./components/start/Footer/Footer";
+import GameRecords from "./components/share/GameRecords";
+import Friends from "./components/share/Friends";
+import Footer from "./components/alwaysExists/Footer/Footer";
 
-const post = {
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import './App.css';
+import LoginPage from "./pages/Login/Login";
+import HomePage from './pages/Home/Home';
+
+const posts = {
     post_id: 71,
     body: "Dzisiaj byłem w sklepie i spotkałem niedźwiedzia!",
     image: "https://www.imgworlds.com/wp-content/uploads/2015/12/18-CONTACTUS-HEADER.jpg",
@@ -66,8 +71,9 @@ const post = {
 }
 
 const App = () => {
-    const [route, setRoute] = useState('home');
+    const [routeLoginPage, setRouteLoginPage] = useState('home');
     const [isSignedIn, setSignedIn] = useState(false);
+    const [background, setBackground] = useState('loginBackground App');
     const [user, setUser] = useState({
         user_id: '',
         email: '',
@@ -82,6 +88,7 @@ const App = () => {
         role: ''
     })
 
+
     const loadUser = (data) => {
         setUser({
             user_id: data.user_id,
@@ -92,37 +99,68 @@ const App = () => {
             date_of_birth: data.date_of_birth
         })
     }
+
     const onRouteChange = (route) => {
         if (route === 'home') {
-            setSignedIn(false);
+            setRouteLoginPage(route);
         } else if (route === 'signin') {
-            setSignedIn(false);
-        } else if (route === 'main') {
-            setSignedIn(true);
+            setRouteLoginPage(route);
+        } else if (route === 'register') {
+            setRouteLoginPage(route);
         }
-        setRoute(route);
+    }
+
+    const onSignedInChange = (change) => {
+        if (change === true) {
+            setSignedIn(true);
+        } else {
+            setSignedIn(false);
+        }
     }
 
     return (
-        <div className="App">
-            <Navigation name={user.name} isSignedIn={isSignedIn} onRouteChange={onRouteChange}/>
-            {(route === "home")
-                ? <Home/>
-                : (route === "signin")
-                    ? <Signin loadUser={loadUser} onRouteChange={onRouteChange}/>
-                    : (route === "register")
-                        ? <Register loadUser={loadUser} onRouteChange={onRouteChange}/>
-                        : <div className="flex mt4">
-                            <Menu />
-                            <Posts post={post}/>
-                                <div className="flex flex-column">
-                                    <GameRecords />
-                                    <Friends />
-                                </div>
-                        </div>
-            }
-            <Footer />
-        </div>
+        <Router>
+            <div className={ background }>
+                {/*<Navigation name={ user.name } isSignedIn={ isSignedIn } onRouteChange={onRouteChange} />*/}
+
+                {/*<Route*/}
+                {/*    path='/'*/}
+                {/*    exact*/}
+                {/*    render={() => (*/}
+                {/*        <LoginPage onSignedInChange={onSignedInChange} loadUser={loadUser} onRouteChange={onRouteChange} routeLoginPage={routeLoginPage} />*/}
+                {/*    )}*/}
+                {/*/>*/}
+
+                {/*{ isSignedIn &&*/}
+                {/*<Route*/}
+                {/*    path='/home'*/}
+                {/*    render={() => (*/}
+                {/*        <HomePage />*/}
+                {/*    )}*/}
+                {/*/>*/}
+                {/*}*/}
+                <HomePage />
+
+
+                {/*{(route === "home")*/}
+                {/*    ? <Home/>*/}
+                {/*    : (route === "signin")*/}
+                {/*        ? <Signin loadUser={loadUser} onRouteChange={onRouteChange}/>*/}
+                {/*        : (route === "register")*/}
+                {/*            ? <Register loadUser={loadUser} onRouteChange={onRouteChange}/>*/}
+                {/*            : <div className="flex mt4">*/}
+                {/*                <Menu />*/}
+                {/*                <Posts posts={posts}/>*/}
+                {/*                    <div className="flex flex-column">*/}
+                {/*                        <GameRecords />*/}
+                {/*                        <Friends />*/}
+                {/*                    </div>*/}
+                {/*            </div>*/}
+                {/*}*/}
+                {/*<Footer />*/}
+            </div>
+        </Router>
+
     )
 }
 

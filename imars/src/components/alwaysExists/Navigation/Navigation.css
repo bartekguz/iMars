@@ -1,0 +1,64 @@
+.navContainer {
+    height: 140px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+.navLeft {
+    flex: 4;
+}
+
+.image {
+    margin-left: 40px;
+    cursor: pointer;
+}
+
+.navCenter {
+    flex: 24;
+}
+
+.searchInput {
+    height: 40px;
+    border-radius: 30px;
+    border: none;
+    width: 50%;
+    text-align: center;
+    margin-left: 25%;
+}
+
+.searchInput:focus {
+    outline: none;
+}
+
+.navRight {
+    flex: 4;
+    display: flex;
+    margin-right: 40px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navRightRegister {
+    flex: 7;
+    display: flex;
+    margin-right: 40px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navImage {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
