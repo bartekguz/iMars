@@ -1,14 +1,16 @@
 .leftMenu {
-    flex: 2;
+    flex: 1;
     height: calc(100vh - 140px);
+    margin-right: 9%;
 }
 
 .leftMenuWrapper {
     border-radius: 20px !important;
     padding: 10px;
     width: 100px;
-    margin-left: 17%;
-    margin-top: 100%;
+    margin-left: 4%;
+    margin-top: 14%;
+    position: fixed;
 }
 
 .leftMenuList {

@@ -1,0 +1,74 @@
+.rightbar {
+    flex: 1;
+    padding: 0 3% 0 9%;
+}
+
+.gameRecordsContainer {
+    margin-top: 15vh;
+}
+
+.gameRecordsContainer, .friendsListContainer {
+    text-align: center;
+    border-radius: 20px;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.gameRecordsTitle, .friendsListTitle {
+    margin-bottom: 25px;
+    padding-top: 15px;
+}
+
+.gameRecordsList, .friendsList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.gameRecordsItem, .friendsItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
+.gameRecordsItem {
+    justify-content: center;
+}
+
+.gameRecordsProfileImgContainer, .friendsListProfileImgContainer {
+    margin: 0 10px 0 10px;
+    position: relative;
+}
+
+.gameRecordsProfileImg, .friendsListProfileImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.friendsListProfileImg {
+    margin-left: 10px;
+}
+
+.friendsListOnline {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: limegreen;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    border: 2px solid white;
+}
+
+.gameRecordsUsername, .friendsListUsername {
+    font-weight: bold;
+}
+
+.gameRecordsCounter {
+    margin-left: 30px;
+    font-weight: bolder;
+}
+

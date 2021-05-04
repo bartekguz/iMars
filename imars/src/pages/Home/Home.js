@@ -1,7 +1,7 @@
 import React from 'react';
 import Menu from "../../components/main/Menu/Menu";
-import Posts from "../../components/main/Posts/Posts";
-import RightBars from "../../components/main/rightBars/RightBars";
+import Feed from "../../components/main/Feed/Feed";
+import RightBars from "../../components/main/rightBars/RightBar";
 import Navigation from "../../components/alwaysExists/Navigation/Navigation";
 import Footer from "../../components/alwaysExists/Footer/Footer";
 import './Home.css';
@@ -13,10 +13,10 @@ const Home = () => {
             <Navigation />
                 <div className="homeContainer">
                     <Menu />
-                    <Posts />
+                    <Feed />
                     <RightBars />
                 </div>
-            <Footer />
+            {/*<Footer />*/}
         </>
     );
 };

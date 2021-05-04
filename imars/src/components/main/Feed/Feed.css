@@ -1,0 +1,19 @@
+.centerPosts {
+    flex: 3;
+    overflow-y: scroll;
+    height: calc(100vh - 70px);
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Wersja 2
+
+.centerPosts {
+    flex: 3;
+}
+
+*/
+

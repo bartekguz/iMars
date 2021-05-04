@@ -4,9 +4,7 @@ import Signin from "./components/start/Signin/Signin";
 import Register from "./components/start/Register/Register";
 import Home from "./components/start/Home/Home";
 import Menu from "./components/main/Menu/Menu";
-import Posts from "./components/main/Posts/Posts";
-import GameRecords from "./components/share/GameRecords";
-import Friends from "./components/share/Friends";
+import Feed from "./components/main/Feed/Feed";
 import Footer from "./components/alwaysExists/Footer/Footer";
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -150,7 +148,7 @@ const App = () => {
                 {/*            ? <Register loadUser={loadUser} onRouteChange={onRouteChange}/>*/}
                 {/*            : <div className="flex mt4">*/}
                 {/*                <Menu />*/}
-                {/*                <Posts posts={posts}/>*/}
+                {/*                <Feed posts={posts}/>*/}
                 {/*                    <div className="flex flex-column">*/}
                 {/*                        <GameRecords />*/}
                 {/*                        <Friends />*/}

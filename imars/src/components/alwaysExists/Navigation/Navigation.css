@@ -1,10 +1,11 @@
 .navContainer {
-    height: 140px;
+    height: 70px;
     width: 100%;
     display: flex;
     align-items: center;
     position: sticky;
     top: 0;
+    z-index: 99;
 }
 
 .navLeft {
@@ -12,6 +13,7 @@
 }
 
 .image {
+    margin-top: 50px;
     margin-left: 40px;
     cursor: pointer;
 }
@@ -21,12 +23,12 @@
 }
 
 .searchInput {
-    height: 40px;
+    height: 35px;
     border-radius: 30px;
     border: none;
-    width: 50%;
+    width: 40%;
     text-align: center;
-    margin-left: 25%;
+    margin-left: 29%;
 }
 
 .searchInput:focus {
@@ -38,7 +40,7 @@
     display: flex;
     margin-right: 40px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .navRightRegister {
@@ -50,8 +52,8 @@
 }
 
 .navImage {
-    width: 64px;
-    height: 64px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
     cursor: pointer;
 }

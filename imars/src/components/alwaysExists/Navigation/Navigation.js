@@ -15,9 +15,9 @@ const Navigation = ({ onRouteChange, name, isSignedIn }) => {
 
                 <div className="navLeft">
                     <div className="image">
-                        <Tilt className="Tilt shadow-2" options={{ max: 40 }} style={{ height: 100, width: 100}}>
+                        <Tilt className="Tilt shadow-2" options={{ max: 40 }} style={{ height: 70, width: 70}}>
                             <div className="Tilt-inner">
-                                <img style={{width: '100px', height: '100px'}} src={logo} alt="logo"/>
+                                <img style={{width: '70px', height: '70px'}} src={logo} alt="logo"/>
                             </div>
                         </Tilt>
                     </div>
