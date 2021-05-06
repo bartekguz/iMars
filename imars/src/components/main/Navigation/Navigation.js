@@ -1,7 +1,7 @@
 import React from 'react';
 import Tilt from "react-tilt";
 import logo from "../../../assets/imarslogo.png";
-import './Navigation.css';
+import './navigation.css';
 
 const Navigation = ({ onRouteChange, name, isSignedIn }) => {
 
