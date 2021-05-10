@@ -1,22 +1,21 @@
 import React from 'react';
-import Menu from "../../components/main/Menu/Menu";
-import Feed from "../../components/main/Feed/Feed";
-import RightBars from "../../components/main/rightBars/RightBar";
-import Navigation from "../../components/alwaysExists/Navigation/Navigation";
-import Footer from "../../components/alwaysExists/Footer/Footer";
-import './Home.css';
+import Menu from "../../components/main/menu/Menu";
+import Feed from "../../components/main/feed/Feed";
+import RightBar from "../../components/main/rightBar/RightBar";
+import Navigation from "../../components/main/navigation/Navigation";
+import Footer from "../../components/main/footer/Footer";
+import './home.css';
 
 
 const Home = () => {
     return (
         <>
             <Navigation />
-                <div className="homeContainer">
-                    <Menu />
-                    <Feed />
-                    <RightBars />
-                </div>
-            {/*<Footer />*/}
+            <div className="homeContainer">
+                <Menu />
+                <Feed />
+                <RightBar />
+            </div>
         </>
     );
 };

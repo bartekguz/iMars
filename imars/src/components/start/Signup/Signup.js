@@ -4,7 +4,7 @@ import keypng from '../../../assets/register/key.png';
 import namepng from '../../../assets/register/name.png';
 import datepng from '../../../assets/register/date.png';
 
-const Register = ({ onRouteChange, loadUser}) => {
+const Signup = ({ onRouteChange, loadUser}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -101,10 +101,10 @@ const Register = ({ onRouteChange, loadUser}) => {
                         </div>
                     </fieldset>
                     <div>
-                        <input onClick={onSubmitRegister} className="b br4 w-100 pv2 input-reset ba b--black bg-black tracked pointer f5 db center white dim" type="submit" value="Register" />
+                        <input onClick={onSubmitRegister} className="b br4 w-100 pv2 input-reset ba b--black bg-black tracked pointer f5 db center white dim" type="submit" value="Signup" />
                     </div>
                     <div className="lh-copy mt2">
-                        <p onClick={() => onRouteChange('signin')} className="mt4 f6 dim normal link pointer black tc">Have an Account? <b>Sign in</b></p>
+                        <p className="mt4 f6 dim normal link pointer black tc">Have an Account? <b>Sign in</b></p>
                     </div>
                 </div>
             </main>
@@ -113,5 +113,5 @@ const Register = ({ onRouteChange, loadUser}) => {
 };
 
 
-export default Register;
+export default Signup;
 

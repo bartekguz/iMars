@@ -5,26 +5,31 @@ export const Users = [
         id:1,
         profilePicture: "https://eu.ui-avatars.com/api/?name=JK",
         username: "Jan Kowalski",
+        record: "234"
     },
     {
         id:2,
         profilePicture: "https://eu.ui-avatars.com/api/?name=KJ",
         username: "Kakub Jocek",
+        record: "152"
     },
     {
         id:3,
         profilePicture: "https://eu.ui-avatars.com/api/?name=KK",
         username: "Krzysztoś Karaf",
+        record: "732"
     },
     {
-        id:4,
-        profilePicture: "https://eu.ui-avatars.com/api/?name=GB",
-        username: "Gartosz Buzik",
+        id:6,
+        profilePicture: "https://eu.ui-avatars.com/api/?name=KK",
+        username: "Krzysztoś Karaf",
+        record: "732"
     },
     {
-        id:5,
-        profilePicture: "https://eu.ui-avatars.com/api/?name=HK",
-        username: "Hamila Kydzik",
+        id:7,
+        profilePicture: "https://eu.ui-avatars.com/api/?name=KK",
+        username: "Krzysztoś Karaf",
+        record: "732"
     }
 ];
 
@@ -54,21 +59,5 @@ export const Posts = [
         userId: 3,
         like: 61,
         comment: 2,
-    },
-    {
-        id: 4,
-        photo: {img},
-        date: "4 hours ago",
-        userId: 4,
-        like: 7,
-        comment: 3,
-    },
-    {
-        id: 5,
-        photo: {img},
-        date: "5 hours ago",
-        userId: 5,
-        like: 23,
-        comment: 5,
     }
 ];

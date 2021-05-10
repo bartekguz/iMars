@@ -1,11 +1,11 @@
 .navContainer {
-    height: 70px;
+    height: 90px;
     width: 100%;
     display: flex;
     align-items: center;
     position: sticky;
     top: 0;
-    z-index: 99;
+    z-index: 999;
 }
 
 .navLeft {
@@ -13,7 +13,7 @@
 }
 
 .image {
-    margin-top: 50px;
+    margin-top: 20px;
     margin-left: 40px;
     cursor: pointer;
 }
@@ -28,7 +28,7 @@
     border: none;
     width: 40%;
     text-align: center;
-    margin-left: 29%;
+    margin-left: 25%;
 }
 
 .searchInput:focus {
@@ -40,7 +40,7 @@
     display: flex;
     margin-right: 40px;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 .navRightRegister {

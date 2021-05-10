@@ -1,5 +1,5 @@
 import React from 'react';
-import './Share.css';
+import './share.css';
 import { PermMedia, InsertEmoticon } from "@material-ui/icons";
 
 const Share = () => {

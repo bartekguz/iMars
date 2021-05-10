@@ -4,7 +4,7 @@ import messagePng from "../../../assets/menu/message.png";
 import usersPng from "../../../assets/menu/team.png";
 import gamePng from "../../../assets/menu/gamepad.png";
 import settingsPng from "../../../assets/menu/settings.png";
-import './Menu.css';
+import './menu.css';
 
 const Menu = () => {
         return (

@@ -1,11 +1,18 @@
-import React from 'react';
-import './Post.css';
+import React, { useState } from 'react';
+import './post.css';
 import { MoreVert } from "@material-ui/icons";
 import rocketPng from '../../../assets/post/rocket.png';
 import postImg from '../../../assets/tlo.jpg';
 import { Users } from '../../fakeData';
 
 const Post = ({ post }) => {
+    const [rocket, setRocket] = useState(post.like);
+    const [isRocked, setIsRocked] = useState(false);
+
+    const rocketHandler = () => {
+        setRocket(isRocked ? rocket - 1 : rocket + 1)
+        setIsRocked(!isRocked)
+    }
 
     return (
         <div className="post bg-white-90 shadow-5">
@@ -26,8 +33,8 @@ const Post = ({ post }) => {
                 </div>
                 <div className="postBottom">
                     <div className="postBottomLeft">
-                        <img className="rocketButton" src={rocketPng} alt="rocketpng"/>
-                        <span className="postRocketCounter">{post.like} people launched it into space</span>
+                        <img className="rocketButton" src={rocketPng} onClick={rocketHandler} alt="rocketpng"/>
+                        <span className="postRocketCounter">{rocket} people launched it into space</span>
                     </div>
                     <div className="postBottomRight">
                         <span className="postCommentText">{post.comment} comments</span>

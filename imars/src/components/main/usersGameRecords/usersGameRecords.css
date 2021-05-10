@@ -1,0 +1,38 @@
+.gameRecordsItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    justify-content: center;
+}
+
+.gameRecordsProfileImgContainer {
+    margin: 0 10px 0 10px;
+    position: relative;
+}
+
+.gameRecordsProfileImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.gameRecordsUsername {
+    font-weight: normal;
+}
+
+.gameRecordsCounter {
+    margin-left: 30px;
+    font-weight: bolder;
+}
+
+@media (max-width: 1300px) {
+    .gameRecordsProfileImg {
+        display: none;
+    }
+
+    .gameRecordsCounter {
+        margin: 0 5px 0 5px;
+    }
+}

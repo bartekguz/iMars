@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import emailpng from '../../../assets/register/email.png';
 import keypng from '../../../assets/register/key.png';
-import { Link, Route } from 'react-router-dom';
-import Home from "../Home/Home";
 
 const Signin = ({ onRouteChange, loadUser, onSignedInChange }) => {
     const [email, setEmail] = useState("");
@@ -83,7 +81,7 @@ const Signin = ({ onRouteChange, loadUser, onSignedInChange }) => {
                                 <input onClick={onSubmitSignin} className="b br4 w-100 pv2 input-reset ba b--black bg-black tracked dim pointer f5 db center white" type="submit" value="LOGIN" />
                         </div>
                         <div className="lh-copy mt2">
-                            <p onClick={() => onRouteChange('register')} className="mt4 f6 normal pointer link dim black tc">Don't have Account? <b>Sign up</b></p>
+                            <p className="mt4 f6 normal pointer link dim black tc">Don't have Account? <b>Sign up</b></p>
                         </div>
                     </div>
                 </main>
