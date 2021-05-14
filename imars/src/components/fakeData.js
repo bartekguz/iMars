@@ -15,21 +15,9 @@ export const Users = [
     },
     {
         id:3,
-        profilePicture: "https://eu.ui-avatars.com/api/?name=KK",
-        username: "Krzysztoś Karaf",
-        record: "732"
-    },
-    {
-        id:6,
-        profilePicture: "https://eu.ui-avatars.com/api/?name=KK",
-        username: "Krzysztoś Karaf",
-        record: "732"
-    },
-    {
-        id:7,
-        profilePicture: "https://eu.ui-avatars.com/api/?name=KK",
-        username: "Krzysztoś Karaf",
-        record: "732"
+        profilePicture: "https://eu.ui-avatars.com/api/?name=GB",
+        username: "Gartosz Buzik",
+        record: "724"
     }
 ];
 

@@ -4,7 +4,8 @@ import { Users } from '../../fakeData';
 import UsersFriendsList from "../usersFriendsList/UsersFriendsList";
 import UsersGameRecords from "../usersGameRecords/UsersGameRecords";
 
-const rightBar = ({ profile }) => {
+//TODO GAME RECORDS, FRIENDS
+const rightBar = ({ user }) => {
 
     const HomeRightbar = () => {
         return (
@@ -36,7 +37,7 @@ const rightBar = ({ profile }) => {
         <div className="rightbar">
             <div className="rightbarWrapper">
                 <div className="gameRecordsContainer bg-white-90">
-                    {profile ? <ProfileRightbar /> : <HomeRightbar />}
+                    {user ? <ProfileRightbar /> : <HomeRightbar />}
                 </div>
 
                 <div className="friendsListContainer bg-white-90">

@@ -1,73 +1,79 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import emailpng from '../../../assets/register/email.png';
 import keypng from '../../../assets/register/key.png';
 import namepng from '../../../assets/register/name.png';
 import datepng from '../../../assets/register/date.png';
 
-const Signup = ({ onRouteChange, loadUser}) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
-    const [lastname, setLastname] = useState("");
-    const [date_of_birth, setDateofbirth] = useState("");
+import { Link, useHistory } from 'react-router-dom';
+import axios from "axios";
+import swal from 'sweetalert';
+import './signup.css';
 
 
-    const onEmailChange = (event) => {
-        setEmail(event.target.value)
+const Signup = () => {
+
+    const capitalize = (s) => {
+        if (typeof s !== 'string') return ''
+        return s.charAt(0).toUpperCase() + s.slice(1)
     }
 
-    const onPasswordChange = (event) => {
-        setPassword(event.target.value)
-    }
+    const name = useRef();
+    const lastname = useRef();
+    const dateofbirth = useRef();
+    const email = useRef();
+    const password = useRef();
+    const history = useHistory();
 
-    const onNameChange = (event) => {
-        let value = event.target.value;
-        let str = value.split(' ');
-        setName(str[0]);
-        setLastname(str[1]);
-    }
+    const handleClick = async (e) => {
+        e.preventDefault();
+        const user = {
+            name: capitalize(name.current.value),
+            lastname: capitalize(lastname.current.value),
+            email: email.current.value,
+            password: password.current.value,
+            date_of_birth: dateofbirth.current.value,
+        };
 
-    const onDateChange = (event) => {
-        setDateofbirth(event.target.value)
-    }
-
-    const onSubmitRegister = async () => {
-        let obj = {email, password, name, lastname, date_of_birth};
-
-        let result = await fetch("http://localhost:8000/api/register", {
-            method: "POST",
-            body: JSON.stringify(obj),
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(user => {
-                console.log(user);
-                if (user.id) {
-                    loadUser(user);
-                    onRouteChange('main');
-                }
-            })
+        try {
+            await axios.post("/register", user);
+            await swal("Good job!", "You signed up!", "success");
+            history.push('/login');
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return (
-        <article className="br4 b--black-10 mv2 w-100 w-50-m w-20-l mw6 shadow-5 center">
+        <form className="br4 b--black-10 mv2 w-100 w-50-m w-30-l mw6 shadow-5 center" onSubmit={handleClick}>
             <main className="br4 pa4 black bg-white-80">
                 <div className="measure">
                     <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                         <legend className="center f3 fw6 ph0 mh0">Sign Up</legend>
+
                         <div className="mt3">
-                            <label className="db fw6 lh-copy f6" htmlFor="email-address">Full Name</label>
+                            <label className="db fw6 lh-copy f6" htmlFor="email-address">First Name</label>
                             <input className="shadow-5 f6 pa2 input-reset ba b--white-025 bg-transparent w-100"
                                    type="text"
-                                   name="name" id="name"
-                                   placeholder="Enter your Name"
+                                   name="firstname" id="firstname"
+                                   placeholder="Enter your First Name"
                                    style={{background: `url(${namepng}) no-repeat scroll 5px`, paddingLeft: '40px'}}
-                                   onChange={onNameChange}
+                                   ref={name}
+                                   required
                             />
                         </div>
+
+                        <div className="mt3">
+                            <label className="db fw6 lh-copy f6" htmlFor="email-address">Last Name</label>
+                            <input className="shadow-5 f6 pa2 input-reset ba b--white-025 bg-transparent w-100"
+                                   type="text"
+                                   name="lastname" id="lastname"
+                                   placeholder="Enter your Last Name"
+                                   style={{background: `url(${namepng}) no-repeat scroll 5px`, paddingLeft: '40px'}}
+                                   ref={lastname}
+                                   required
+                            />
+                        </div>
+
                         <div className="mt3">
                             <label className="db fw6 lh-copy f6" htmlFor="email-address">Date of Birth</label>
                             <input className="shadow-5 pa2 f6 input-reset ba b--white-025 bg-transparent w-100"
@@ -75,9 +81,11 @@ const Signup = ({ onRouteChange, loadUser}) => {
                                    name="date-of-birth"
                                    id="date-of-birth"
                                    style={{boxSizing: 'border-box', background: `url(${datepng}) no-repeat scroll 5px`, paddingLeft: '40px'}}
-                                   onChange={onDateChange}
+                                   ref={dateofbirth}
+                                   required
                             />
                         </div>
+
                         <div className="mt3">
                             <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
                             <input className="shadow-5 f6 pa2 input-reset ba b--white-025 bg-transparent w-100"
@@ -86,9 +94,11 @@ const Signup = ({ onRouteChange, loadUser}) => {
                                    id="email-address"
                                    placeholder="Enter your Email"
                                    style={{background: `url(${emailpng}) no-repeat scroll 5px`, paddingLeft: '40px'}}
-                                   onChange={onEmailChange}
+                                   ref={email}
+                                   required
                             />
                         </div>
+
                         <div className="mv3">
                             <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
                             <input className="shadow-5 f6 pa2 input-reset ba b--white-025 bg-transparent w-100"
@@ -96,19 +106,26 @@ const Signup = ({ onRouteChange, loadUser}) => {
                                    name="password" id="password"
                                    placeholder="Enter your password"
                                    style={{background: `url(${keypng}) no-repeat scroll 5px`, paddingLeft: '40px'}}
-                                   onChange={onPasswordChange}
+                                   ref={password}
+                                   required
+                                   minLength="8"
                             />
                         </div>
                     </fieldset>
+
                     <div>
-                        <input onClick={onSubmitRegister} className="b br4 w-100 pv2 input-reset ba b--black bg-black tracked pointer f5 db center white dim" type="submit" value="Signup" />
+                        <button className="b br4 w-100 pv2 input-reset ba b--black bg-black tracked pointer f5 db center white dim" type="submit">SIGNUP</button>
                     </div>
+
                     <div className="lh-copy mt2">
-                        <p className="mt4 f6 dim normal link pointer black tc">Have an Account? <b>Sign in</b></p>
+                        <Link to='/login' style={{textDecoration: 'none'}}>
+                            <p className="mt4 f6 dim normal link pointer black tc">Have an Account? <b>Sign in</b></p>
+                        </Link>
                     </div>
+
                 </div>
             </main>
-        </article>
+        </form>
     )
 };
 

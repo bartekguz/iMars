@@ -1,44 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './feed.css';
 import Share from "../share/Share";
 import Post from "../post/Post";
-import { Posts } from "../../fakeData";
+import axios from "axios";
+import { AuthContext } from "../../../context/AuthContext";
 
-const Feed = ({ profile }) => {
+const Feed = ({ id }) => {
+
+    const { token } = useContext(AuthContext);
+    const [posts, setPosts] = useState([]);
+
+    axios.interceptors.request.use(
+        config => {
+            config.headers.authorization = `Bearer ${token}`;
+            return config;
+        },
+        error => {
+            return Promise.reject(error);
+        }
+    );
+
+    useEffect( () => {
+        const fetchPosts = async () => {
+            const res = id
+                ? await axios.get(`/users/${id}/posts`)
+                : await axios.get("/posts")
+            setPosts(res.data);
+        };
+        fetchPosts()
+    }, [id])
 
     const HomeCenterPosts = () => {
        return (
-           <>
                <div className="centerPosts">
                    <div className="centerPostsWrapper">
                        <Share />
-                       {Posts.map((p) => (
-                           <Post key={ p.id } post={ p }/>
+                       {posts.map((p) => (
+                           <Post key={ p.post.id } post={ p.post } likes={ p.likes }/>
                        ))}
                    </div>
                </div>
-           </>
        )
     }
 
     const ProfileCenterPosts = () => {
         return (
-            <>
                 <div className="profileCenterPosts">
                     <div className="centerPostsWrapper">
-                        {Posts.map((p) => (
-                            <Post key={ p.id } post={ p }/>
+                        {posts.map((p) => (
+                            <Post key={ p.post.id } post={ p.post } likes={ p.likes }/>
                         ))}
                     </div>
                 </div>
-            </>
         )
     }
 
     return (
         <>
-            {profile ? <ProfileCenterPosts /> : <HomeCenterPosts />}
-
+            {id ? <ProfileCenterPosts /> : <HomeCenterPosts />}
         </>
     );
 };

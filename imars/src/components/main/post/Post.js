@@ -1,34 +1,57 @@
-import React, { useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './post.css';
 import { MoreVert } from "@material-ui/icons";
 import rocketPng from '../../../assets/post/rocket.png';
 import postImg from '../../../assets/tlo.jpg';
-import { Users } from '../../fakeData';
+import { AuthContext } from "../../../context/AuthContext";
+import axios from "axios";
+import { format } from 'timeago.js';
 
-const Post = ({ post }) => {
-    const [rocket, setRocket] = useState(post.like);
-    const [isRocked, setIsRocked] = useState(false);
+const Post = ({ post, likes }) => {
+    const [rocket, setRocket] = useState(likes);
+    const [user, setUser] = useState({});
 
-    const rocketHandler = () => {
-        setRocket(isRocked ? rocket - 1 : rocket + 1)
-        setIsRocked(!isRocked)
+    const { token } = useContext(AuthContext);
+
+    axios.interceptors.request.use(
+        config => {
+            config.headers.authorization = `Bearer ${token}`;
+            return config;
+        },
+        error => {
+            return Promise.reject(error);
+        }
+    );
+
+    useEffect( () => {
+        const fetchUser = async () => {
+            const res = await axios.get(`/users/${post.user_id}`);
+            setUser(res.data)
+        }
+        fetchUser();
+    }, [post.user_id])
+
+    const rocketHandler = async () => {
+        const res = await axios.get(`/posts/${post.id}/like`)
+        setRocket(res.data.likes)
     }
 
+    //TODO COMMENTS
     return (
         <div className="post bg-white-90 shadow-5">
             <div className="postWrapper">
                 <div className="postTop">
                     <div className="postTopLeft">
-                        <img src={Users.filter((u) => u.id === post.userId)[0].profilePicture} alt="postProfileImage" className="postProfileImage"/>
-                        <span className="postUsername">{Users.filter((u) => u.id === post.userId)[0].username}</span>
-                        <span className="postDate">{post.date}</span>
+                        {user && <img src={`https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="postProfileImage" className="postProfileImage"/>}
+                        {user && <span className="postUsername">{user.name} {user.lastname}</span>}
+                        <span className="postDate">{format(post.created_at)}</span>
                     </div>
                     <div className="postTopRight">
                         <MoreVert />
                     </div>
                 </div>
                 <div className="postCenter">
-                    <span className="postText">{post?.desc}</span>
+                    <span className="postText">{post?.body}</span>
                     <img className="postImage" src={postImg} alt="imgpost"/>
                 </div>
                 <div className="postBottom">

@@ -1,67 +1,54 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import './app.css';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import Login from './pages/login/Login';
 import Home from './pages/home/Home';
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import Welcome from "./pages/welcome/Welcome";
+import { AuthContext } from "./context/AuthContext";
 
 const App = () => {
-    const [routeLoginPage, setRouteLoginPage] = useState('home');
-    const [isSignedIn, setSignedIn] = useState(false);
-    const [background, setBackground] = useState('loginBackground App');
+
+    const { user, token } = useContext(AuthContext);
 
     return (
         <Router>
-            <div className={ background }>
-                {/*<navigation name={ user.name } isSignedIn={ isSignedIn } onRouteChange={onRouteChange} />*/}
+            <Switch>
+                <Route exact path='/'>
+                    {console.log("/")}
+                    {console.log(user)}
+                    {console.log(token)}
+                    {user ? <Home /> : <Welcome />}
+                </Route>
 
-                {/*<Route*/}
-                {/*    path='/'*/}
-                {/*    exact*/}
-                {/*    render={() => (*/}
-                {/*        <LoginPage onSignedInChange={onSignedInChange} loadUser={loadUser} onRouteChange={onRouteChange} routeLoginPage={routeLoginPage} />*/}
-                {/*    )}*/}
-                {/*/>*/}
+                <Route path='/welcome'>
+                    {console.log("WELCOME")}
+                    {console.log(user)}
+                    {console.log(token)}
+                    {user ? <Redirect to ='/' /> : <Welcome />}
+                </Route>
 
-                {/*{ isSignedIn &&*/}
-                {/*<Route*/}
-                {/*    path='/home'*/}
-                {/*    render={() => (*/}
-                {/*        <HomePage />*/}
-                {/*    )}*/}
-                {/*/>*/}
-                {/*}*/}
-                
-                <Home />
-                {/*<Profile />*/}
+                <Route path='/login'>
+                    {console.log("LOGIN")}
+                    {console.log(user)}
+                    {console.log(token)}
+                    {user ? <Redirect to='/' /> : <Login />}
+                </Route>
 
-                {/*<Login />*/}
-                {/*<Register />*/}
-                {/*<Welcome />*/}
+                <Route path='/register'>
+                    {console.log("REGISTER")}
+                    {console.log(user)}
+                    {console.log(token)}
+                    {user ? <Redirect to='/login' /> : <Register />}
+                </Route>
 
-
-
-                {/*{(route === "home")*/}
-                {/*    ? <home/>*/}
-                {/*    : (route === "signin")*/}
-                {/*        ? <Signin loadUser={loadUser} onRouteChange={onRouteChange}/>*/}
-                {/*        : (route === "register")*/}
-                {/*            ? <Signup loadUser={loadUser} onRouteChange={onRouteChange}/>*/}
-                {/*            : <div className="flex mt4">*/}
-                {/*                <menu />*/}
-                {/*                <feed posts={posts}/>*/}
-                {/*                    <div className="flex flex-column">*/}
-                {/*                        <GameRecords />*/}
-                {/*                        <friends />*/}
-                {/*                    </div>*/}
-                {/*            </div>*/}
-                {/*}*/}
-                {/*<footer />*/}
-            </div>
+                <Route path='/profile/:id'>
+                    {user ? <Profile /> : <Welcome />}
+                </Route>
+            </Switch>
         </Router>
 
     )

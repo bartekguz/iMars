@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Navigation from "../../components/main/navigation/Navigation";
 import './welcome.css';
 import Footer from "../../components/main/footer/Footer";
 
 
 const Welcome = () => {
+
     return (
         <>
             <Navigation login />

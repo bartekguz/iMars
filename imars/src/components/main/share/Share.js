@@ -1,13 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './share.css';
 import { PermMedia, InsertEmoticon } from "@material-ui/icons";
+import {AuthContext} from "../../../context/AuthContext";
 
 const Share = () => {
+
+    const { user } = useContext(AuthContext);
+
     return (
         <div className="share bg-white-90 shadow-5">
             <div className="shareWrapper">
                 <div className="shareTop">
-                    <img className="shareImage" src="http://tachyons.io/img/logo.jpg" alt="logo"/>
+                    <img className="shareImage" src={`https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="logo"/>
                     <input placeholder="What's in your mind Bartosz?" className="shareInput"/>
                 </div>
                 <hr className="shareHr"/>
