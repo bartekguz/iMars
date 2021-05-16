@@ -48,7 +48,7 @@ const Profile = () => {
                 <div className="profile">
                     <div className="bg bg-white-80">
                         <div className="profileTop">
-                            <img className="profileUserImg" src="https://eu.ui-avatars.com/api/?name=GM" alt="profileimg"/>
+                            <img className="profileUserImg" src={`https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="profileimg"/>
                         </div>
 
                         <div className="profileInfo black">

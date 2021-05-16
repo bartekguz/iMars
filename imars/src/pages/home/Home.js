@@ -16,9 +16,6 @@ const Home = () => {
         <>
             <Navigation />
             <div className="homeContainer">
-                {console.log("HOME")}
-                {console.log(user)}
-                {console.log(token)}
                 <Menu />
                 <Feed />
                 <RightBar />

@@ -20,7 +20,7 @@ const Navigation = ({ login, register }) => {
             await logoutCall(dispatch);
             history.push('/welcome');
             await swal("Good job!", "You Logged out correctly!", "success");
-            history.go(0)
+            // history.go(0)
         } catch (err) {
             console.log(err);
         }

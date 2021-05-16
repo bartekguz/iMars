@@ -12,6 +12,12 @@ import './signup.css';
 
 const Signup = () => {
 
+    Date.prototype.toDateInputValue = (function() {
+        var local = new Date(this);
+        local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+        return local.toJSON().slice(0,10);
+    });
+
     const capitalize = (s) => {
         if (typeof s !== 'string') return ''
         return s.charAt(0).toUpperCase() + s.slice(1)
@@ -51,7 +57,7 @@ const Signup = () => {
                         <legend className="center f3 fw6 ph0 mh0">Sign Up</legend>
 
                         <div className="mt3">
-                            <label className="db fw6 lh-copy f6" htmlFor="email-address">First Name</label>
+                            <label className="db fw6 lh-copy f6">First Name</label>
                             <input className="shadow-5 f6 pa2 input-reset ba b--white-025 bg-transparent w-100"
                                    type="text"
                                    name="firstname" id="firstname"
@@ -63,7 +69,7 @@ const Signup = () => {
                         </div>
 
                         <div className="mt3">
-                            <label className="db fw6 lh-copy f6" htmlFor="email-address">Last Name</label>
+                            <label className="db fw6 lh-copy f6">Last Name</label>
                             <input className="shadow-5 f6 pa2 input-reset ba b--white-025 bg-transparent w-100"
                                    type="text"
                                    name="lastname" id="lastname"
@@ -75,11 +81,13 @@ const Signup = () => {
                         </div>
 
                         <div className="mt3">
-                            <label className="db fw6 lh-copy f6" htmlFor="email-address">Date of Birth</label>
+                            <label className="db fw6 lh-copy f6">Date of Birth</label>
                             <input className="shadow-5 pa2 f6 input-reset ba b--white-025 bg-transparent w-100"
                                    type="date"
                                    name="date-of-birth"
                                    id="date-of-birth"
+                                   min="1900-01-01"
+                                   max={new Date().toDateInputValue()}
                                    style={{boxSizing: 'border-box', background: `url(${datepng}) no-repeat scroll 5px`, paddingLeft: '40px'}}
                                    ref={dateofbirth}
                                    required

@@ -12,41 +12,33 @@ import { AuthContext } from "./context/AuthContext";
 
 const App = () => {
 
-    const { user, token } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     return (
         <Router>
             <Switch>
                 <Route exact path='/'>
-                    {console.log("/")}
-                    {console.log(user)}
-                    {console.log(token)}
                     {user ? <Home /> : <Welcome />}
                 </Route>
 
                 <Route path='/welcome'>
-                    {console.log("WELCOME")}
-                    {console.log(user)}
-                    {console.log(token)}
                     {user ? <Redirect to ='/' /> : <Welcome />}
                 </Route>
 
                 <Route path='/login'>
-                    {console.log("LOGIN")}
-                    {console.log(user)}
-                    {console.log(token)}
                     {user ? <Redirect to='/' /> : <Login />}
                 </Route>
 
                 <Route path='/register'>
-                    {console.log("REGISTER")}
-                    {console.log(user)}
-                    {console.log(token)}
                     {user ? <Redirect to='/login' /> : <Register />}
                 </Route>
 
                 <Route path='/profile/:id'>
                     {user ? <Profile /> : <Welcome />}
+                </Route>
+
+                <Route path='/*'>
+                    <Redirect to='/' />
                 </Route>
             </Switch>
         </Router>

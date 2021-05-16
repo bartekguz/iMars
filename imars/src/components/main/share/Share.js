@@ -12,7 +12,7 @@ const Share = () => {
             <div className="shareWrapper">
                 <div className="shareTop">
                     <img className="shareImage" src={`https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="logo"/>
-                    <input placeholder="What's in your mind Bartosz?" className="shareInput"/>
+                    <input placeholder={`What's in your mind ${user.name}?`} className="shareInput"/>
                 </div>
                 <hr className="shareHr"/>
                 <div className="shareBottom">
