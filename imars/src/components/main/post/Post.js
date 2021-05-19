@@ -1,29 +1,16 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './post.css';
 import { MoreVert } from "@material-ui/icons";
 import rocketPng from '../../../assets/post/rocket.png';
-import postImg from '../../../assets/tlo.jpg';
-import { AuthContext } from "../../../context/AuthContext";
 import axios from "axios";
 import { format } from 'timeago.js';
+import {Link} from "react-router-dom";
 
 const Post = ({ post, likes }) => {
     const [rocket, setRocket] = useState(likes);
     const [user, setUser] = useState({});
 
-    const { token } = useContext(AuthContext);
-
-    axios.interceptors.request.use(
-        config => {
-            config.headers.authorization = `Bearer ${token}`;
-            return config;
-        },
-        error => {
-            return Promise.reject(error);
-        }
-    );
-
-    useEffect( () => {
+    useEffect( async () => {
         const fetchUser = async () => {
             const res = await axios.get(`/users/${post.user_id}`);
             setUser(res.data)
@@ -42,7 +29,9 @@ const Post = ({ post, likes }) => {
             <div className="postWrapper">
                 <div className="postTop">
                     <div className="postTopLeft">
-                        {user && <img src={`https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="postProfileImage" className="postProfileImage"/>}
+                        <Link to={`/profile/${user.id}`}>
+                            {user && <img src={`https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="postProfileImage" className="postProfileImage"/>}
+                        </Link>
                         {user && <span className="postUsername">{user.name} {user.lastname}</span>}
                         <span className="postDate">{format(post.created_at)}</span>
                     </div>
@@ -52,7 +41,7 @@ const Post = ({ post, likes }) => {
                 </div>
                 <div className="postCenter">
                     <span className="postText">{post?.body}</span>
-                    <img className="postImage" src={postImg} alt="imgpost"/>
+                    {post.image && <img className="postImage" src={`http://localhost:8000/storage/${post.image}`} alt="imgpost"/>}
                 </div>
                 <div className="postBottom">
                     <div className="postBottomLeft">

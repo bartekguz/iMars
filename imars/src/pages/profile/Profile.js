@@ -1,30 +1,17 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Navigation from "../../components/main/navigation/Navigation";
 import Menu from "../../components/main/menu/Menu";
 import RightBar from "../../components/main/rightBar/RightBar";
 import './profile.css';
 import Feed from "../../components/main/feed/Feed";
-import {AuthContext} from "../../context/AuthContext";
 import axios from "axios";
 import {useHistory, useParams} from "react-router-dom";
 import swal from "sweetalert";
 
 const Profile = () => {
-
-    const { token } = useContext(AuthContext);
     const [user, setUser] = useState({});
     const userid = useParams().id;
     const history = useHistory();
-
-    axios.interceptors.request.use(
-        config => {
-            config.headers.authorization = `Bearer ${token}`;
-            return config;
-        },
-        error => {
-            return Promise.reject(error);
-        }
-    );
 
     useEffect( () => {
         const fetchUser = async () => {
@@ -59,7 +46,7 @@ const Profile = () => {
 
 
                     <div className="profileBottom">
-                        <Feed id={user.id} />
+                        <Feed id={userid} />
                     </div>
                 </div>
                 <RightBar user={user} />

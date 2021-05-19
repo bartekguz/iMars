@@ -1,24 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import './feed.css';
 import Share from "../share/Share";
 import Post from "../post/Post";
 import axios from "axios";
-import { AuthContext } from "../../../context/AuthContext";
+import {AuthContext} from "../../../context/AuthContext";
 
 const Feed = ({ id }) => {
 
-    const { token } = useContext(AuthContext);
     const [posts, setPosts] = useState([]);
-
-    axios.interceptors.request.use(
-        config => {
-            config.headers.authorization = `Bearer ${token}`;
-            return config;
-        },
-        error => {
-            return Promise.reject(error);
-        }
-    );
+    const { user } = useContext(AuthContext);
 
     useEffect( () => {
         const fetchPosts = async () => {
@@ -30,36 +20,16 @@ const Feed = ({ id }) => {
         fetchPosts()
     }, [id])
 
-    const HomeCenterPosts = () => {
-       return (
-               <div className="centerPosts">
-                   <div className="centerPostsWrapper">
-                       <Share />
-                       {posts.map((p) => (
-                           <Post key={ p.post.id } post={ p.post } likes={ p.likes }/>
-                       ))}
-                   </div>
-               </div>
-       )
-    }
-
-    const ProfileCenterPosts = () => {
-        return (
-                <div className="profileCenterPosts">
-                    <div className="centerPostsWrapper">
-                        {posts.map((p) => (
-                            <Post key={ p.post.id } post={ p.post } likes={ p.likes }/>
-                        ))}
-                    </div>
-                </div>
-        )
-    }
-
     return (
-        <>
-            {id ? <ProfileCenterPosts /> : <HomeCenterPosts />}
-        </>
-    );
+        <div className={`${id ? "profileCenterPosts" : "centerPosts"}`}>
+            <div className="centerPostsWrapper">
+                {(!id || id === user.id) && <Share/>}
+                {posts.map((p) => (
+                    <Post key={p.post.id} post={p.post} likes={p.likes} />
+                ))}
+            </div>
+        </div>
+    )
 };
 
 export default Feed;

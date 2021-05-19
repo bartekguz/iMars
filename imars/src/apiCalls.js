@@ -28,7 +28,7 @@ export const logoutCall = async (dispatch) => {
         })
     } catch (err) {
         dispatch({
-            type: "LOGIN_FAILURE",
+            type: "LOGOUT_FAILURE",
             payload: err
         })
     }
