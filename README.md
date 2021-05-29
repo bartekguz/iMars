@@ -1,24 +1,41 @@
 # iMars
 
+# Medium społecznościowe
+### Cel projektu:
+Celem projekty jest stworzenie medium społecznościowego na wzór facebooka.
+### Szczegółowe cele:
+   1. Połączenie znajomych przez internet.
+   2. Użytkownicy mogą dzielić się życiem, pisać i rywalizować ze swoimi znajomymi.
+### Docelowe funkcjonalności:
+   1. Logowanie, rejestracja oraz możliwość edytowania danych użytkownika,
+   2. Szukanie znajomych oraz możliwość dodania ich do znajomych,
+   3. Tworzenie, komentowanie oraz lajkowanie postów,
+   4. Prywatny czat pomiędzy użytkownikami,
+   5. Gra, w której można rywalizować z innymi użytkownikami pobijając wcześniejsze rekordy.
+
+#### Strona startowa:
+![alt text](https://i.ibb.co/9ThnvGF/Zrzut-ekranu-2021-05-22-132539.png)
+#### Strona logowania:
+![alt text](https://i.ibb.co/rGgKSRF/Zrzut-ekranu-2021-05-22-132550.png)
+#### Strona główna:
+![alt text](https://i.ibb.co/3hnzV6Z/Zrzut-ekranu-2021-05-22-132404.png)
+![alt text](https://i.ibb.co/3T88GB2/Zrzut-ekranu-2021-05-22-132436.png)
+#### Strona profilu:
+![alt text](https://i.ibb.co/XjV15sS/Zrzut-ekranu-2021-05-22-132505.png)
+
+
+
+# iMars
+
 # Social medium
 ### Project purpose
 The goal of the project is to make social medium like facebook.
 #### Detailed purposes:
    1. Connect friends via internet.
-   2. People can share life with their friends.
-### Functionalities:
-   1. Login, registration and profile editing options. 
-   2. Searching and adding friends.
-   3. Creating and commenting commposts.
-   4. Launching into space posts and comments (giving a like).
-   6. Private chat.
-   7. Game where you can compete with your friends.
-
-#### Prototyp strony logowania i rejestracji - wersja na komputer 
-![alt text](https://i.ibb.co/mSjgccJ/Web-1920-2.png "Strona logowania i rejestracji")
-
-#### Prototyp strony logowania i rejestracji - wersja na telefon 
-![alt text](https://i.ibb.co/VL5WrGG/i-Phone-X-XS-11-Pro-2.png "Strona logowania i rejestracji")
-
-#### Prototyp strony głównej - wersja na komputer
-![alt text](https://i.ibb.co/ZV5Y42D/Web-1920-3.png "Strona główna")
+   2. People can share life, write and compete with their friends.
+### Taget functionalities:
+   1. Login, registration and profile editing options,
+   2. Searching and adding friends,
+   3. Creating, commenting and liking comm & posts.
+   4. Private chat.
+   5. Game where you can compete with your friends by beating previous records.
