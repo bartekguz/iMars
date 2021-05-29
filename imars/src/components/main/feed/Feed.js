@@ -11,13 +11,16 @@ const Feed = ({ id }) => {
     const { user } = useContext(AuthContext);
 
     useEffect( () => {
+        let isMounted = true;
         const fetchPosts = async () => {
             const res = id
                 ? await axios.get(`/users/${id}/posts`)
                 : await axios.get("/posts")
-            setPosts(res.data);
+            if (isMounted) setPosts(res.data);
         };
-        fetchPosts()
+
+        fetchPosts();
+        return () => { isMounted = false };
     }, [id])
 
     return (
@@ -25,7 +28,7 @@ const Feed = ({ id }) => {
             <div className="centerPostsWrapper">
                 {(!id || id === user.id) && <Share/>}
                 {posts.map((p) => (
-                    <Post key={p.post.id} post={p.post} likes={p.likes} />
+                    <Post key={p.post.id} post={p.post} likes={p.likes} liked={p.liked} postUser={p.user} />
                 ))}
             </div>
         </div>

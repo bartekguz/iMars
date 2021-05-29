@@ -3,6 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="936d10d7-279a-4b03-95ff-565a4a53b0a9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imars/src/apiCalls.js" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/apiCalls.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imars/src/components/main/feed/Feed.js" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/components/main/feed/Feed.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imars/src/components/main/navigation/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/components/main/navigation/Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imars/src/components/main/post/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/components/main/post/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imars/src/components/main/share/Share.js" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/components/main/share/Share.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imars/src/components/main/share/share.css" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/components/main/share/share.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imars/src/context/AuthActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/context/AuthActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imars/src/context/AuthContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/context/AuthContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imars/src/context/AuthReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/context/AuthReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imars/src/pages/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/pages/home/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imars/src/pages/profile/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/pages/profile/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imars/src/pages/welcome/Welcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/imars/src/pages/welcome/Welcome.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,10 +45,21 @@
       <updated>1617991176229</updated>
       <workItem from="1617991178167" duration="2049000" />
       <workItem from="1618048427805" duration="8232000" />
+      <workItem from="1621426544269" duration="19222000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="706" y="340" key="#Notifications" timestamp="1621454744325">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="706" y="340" key="#Notifications/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621454744325" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1621454776003">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621454776003" />
   </component>
 </project>

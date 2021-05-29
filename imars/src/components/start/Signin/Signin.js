@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useRef, useContext } from 'react';
 import emailpng from '../../../assets/register/email.png';
 import keypng from '../../../assets/register/key.png';
 import { Link } from 'react-router-dom';

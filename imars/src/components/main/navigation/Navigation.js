@@ -9,7 +9,7 @@ import {logoutCall} from "../../../apiCalls";
 
 const Navigation = ({ login, register }) => {
 
-    const { user, dispatch} = useContext(AuthContext);
+    const { user, dispatch } = useContext(AuthContext);
     const history = useHistory();
 
 
@@ -53,7 +53,7 @@ const Navigation = ({ login, register }) => {
     const SearchBar = () => {
         return (
             <div className="searchBar">
-                <input placeholder="Search for friends or posts" className="searchInput"/>
+                {/*<input placeholder="Search for friends or posts" className="searchInput"/>*/}
             </div>
         )
     }

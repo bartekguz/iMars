@@ -1,11 +1,28 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './rightBar.css';
 import { Users } from '../../fakeData';
 import UsersFriendsList from "../usersFriendsList/UsersFriendsList";
 import UsersGameRecords from "../usersGameRecords/UsersGameRecords";
+import axios from "axios";
+import {AuthContext} from "../../../context/AuthContext";
 
 //TODO GAME RECORDS, FRIENDS
-const rightBar = ({ user }) => {
+const RightBar = () => {
+
+    const { user } = useContext(AuthContext);
+    const [friends, setFriends] = useState([]);
+
+    useEffect(() => {
+        const getFriends = async () => {
+            try {
+                const friendsList = await axios.get(`/users/${user.id}/friends`);
+                setFriends(friendsList.data.friends);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        getFriends();
+    }, [user.id])
 
     const HomeRightbar = () => {
         return (
@@ -43,7 +60,7 @@ const rightBar = ({ user }) => {
                 <div className="friendsListContainer bg-white-90">
                     <h3 className="friendsListTitle">Friends list</h3>
                     <ul className="friendsList">
-                        {Users.map((u) => (
+                        {friends.map((u) => (
                             <UsersFriendsList key={u.id} user={u} />
                             ))}
                     </ul>
@@ -54,4 +71,4 @@ const rightBar = ({ user }) => {
 };
 
 
-export default rightBar;
+export default RightBar;

@@ -1,4 +1,3 @@
-import React, {useContext} from 'react';
 import Menu from "../../components/main/menu/Menu";
 import Feed from "../../components/main/feed/Feed";
 import RightBar from "../../components/main/rightBar/RightBar";

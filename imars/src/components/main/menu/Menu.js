@@ -1,8 +1,8 @@
 import React from 'react';
-import homePng from "../../../assets/menu/house.png";
-import messagePng from "../../../assets/menu/message.png";
-import usersPng from "../../../assets/menu/team.png";
-import gamePng from "../../../assets/menu/gamepad.png";
+import homePng from "../../../assets/menu/house-64.png";
+import messagePng from "../../../assets/menu/message-64.png";
+import usersPng from "../../../assets/menu/team-64.png";
+import gamePng from "../../../assets/menu/gamepad-64.png";
 import './menu.css';
 import {Link} from "react-router-dom";
 
@@ -14,20 +14,20 @@ const Menu = () => {
                         <ul className="leftMenuList">
                                 <li className="leftMenuListItem">
                                         <Link to='/'>
-                                               <img className="pointer dim" src={homePng}  alt='homePng'/>
+                                               <img className="pointer dim menuPng" src={homePng}  alt='homePng'/>
                                         </Link>
                                 </li>
 
                                 <li className="leftMenuListItem">
-                                        <img className="pointer dim" src={messagePng}  alt='messagePng'/>
+                                        <img className="pointer dim menuPng" src={messagePng}  alt='messagePng'/>
                                 </li>
 
                                 <li className="leftMenuListItem">
-                                        <img className="pointer dim" src={usersPng}  alt='usersPng'/>
+                                        <img className="pointer dim menuPng" src={usersPng}  alt='usersPng'/>
                                 </li>
 
                                 <li className="leftMenuListItem">
-                                        <img className="pointer dim" src={gamePng}  alt='gamePng'/>
+                                        <img className="pointer dim menuPng" src={gamePng}  alt='gamePng'/>
                                 </li>
                         </ul>
                 </div>

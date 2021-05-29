@@ -12,6 +12,7 @@ import './signup.css';
 
 const Signup = () => {
 
+    // eslint-disable-next-line no-extend-native
     Date.prototype.toDateInputValue = (function() {
         var local = new Date(this);
         local.setMinutes(this.getMinutes() - this.getTimezoneOffset());

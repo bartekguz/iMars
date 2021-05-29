@@ -62,5 +62,19 @@ html {
     font-weight: lighter;
 }
 
+.profileFollowButton {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: black;
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+
 
 

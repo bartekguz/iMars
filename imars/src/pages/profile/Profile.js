@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Navigation from "../../components/main/navigation/Navigation";
 import Menu from "../../components/main/menu/Menu";
 import RightBar from "../../components/main/rightBar/RightBar";
@@ -7,24 +7,60 @@ import Feed from "../../components/main/feed/Feed";
 import axios from "axios";
 import {useHistory, useParams} from "react-router-dom";
 import swal from "sweetalert";
+import {Add, Remove} from '@material-ui/icons';
+import {AuthContext} from "../../context/AuthContext";
 
 const Profile = () => {
     const [user, setUser] = useState({});
-    const userid = useParams().id;
+    const { user: currentUser } = useContext(AuthContext);
+    const paramsUserId = useParams().id;
     const history = useHistory();
+    const [isFriend, setIsFriend] = useState(false);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        const isFriend = async () => {
+            try {
+                const res = await axios.get(`/friends/${paramsUserId}`);
+                if (isMounted) setIsFriend(res.data.friend)
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        isFriend();
+        return () => { isMounted = false }
+    }, [paramsUserId])
 
     useEffect( () => {
+        let isMounted = true;
+
         const fetchUser = async () => {
-            const res = await axios.get(`/users/${userid}`);
-            if (res.data.id) {
-                setUser(res.data)
-            } else {
-                history.push('/')
-                await swal("Ops!", `User with ID ${userid} does not exist!`, "error");
+            try {
+                const res = await axios.get(`/users/${paramsUserId}`);
+                if (res.data.id) {
+                    isMounted && setUser(res.data)
+                } else {
+                    history.push('/')
+                    await swal("Ops!", `User with ID ${paramsUserId} does not exist!`, "error");
+                }
+            } catch (e) {
+                console.log(e);
             }
         }
         fetchUser();
-    }, [userid])
+        return () => { isMounted = false }
+    }, [paramsUserId, history])
+
+    const handleClick = async () => {
+        try {
+            await axios.get(`/users/${paramsUserId}/friend`)
+            setIsFriend(!isFriend)
+            window.location.reload()
+        } catch (err) {
+
+        }
+    }
 
     return (
         <>
@@ -41,12 +77,21 @@ const Profile = () => {
                         <div className="profileInfo black">
                             {user && <span className="profileInfoName">{user.name} {user.lastname}</span>}
                             {user && <span className="profileInfoDesc">{user.location}</span>}
+
+                            {currentUser.id !== parseInt(paramsUserId) && (
+                                user.name && <button className="profileFollowButton dim" onClick={handleClick}>
+                                    {isFriend ? "Unfollow" : "Follow"}
+                                    {isFriend ? <Remove /> : <Add />}
+                                </button>
+                            )}
                         </div>
+
+
                     </div>
 
 
                     <div className="profileBottom">
-                        <Feed id={userid} />
+                        <Feed id={paramsUserId} />
                     </div>
                 </div>
                 <RightBar user={user} />
