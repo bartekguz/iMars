@@ -19,15 +19,21 @@ const Menu = () => {
                                 </li>
 
                                 <li className="leftMenuListItem">
-                                        <img className="pointer dim menuPng" src={messagePng}  alt='messagePng'/>
+                                        <Link to='/messenger'>
+                                                <img className="pointer dim menuPng" src={messagePng}  alt='messagePng'/>
+                                        </Link>
                                 </li>
 
                                 <li className="leftMenuListItem">
-                                        <img className="pointer dim menuPng" src={usersPng}  alt='usersPng'/>
+                                        <Link to='/users'>
+                                                <img className="pointer dim menuPng" src={usersPng}  alt='usersPng'/>
+                                        </Link>
                                 </li>
 
                                 <li className="leftMenuListItem">
-                                        <img className="pointer dim menuPng" src={gamePng}  alt='gamePng'/>
+                                        <Link to='/game'>
+                                                <img className="pointer dim menuPng" src={gamePng}  alt='gamePng'/>
+                                        </Link>
                                 </li>
                         </ul>
                 </div>

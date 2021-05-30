@@ -1,0 +1,15 @@
+.userImage {
+    border-radius: 100%;
+}
+
+.userInfoDesc {
+    font-weight: lighter;
+}
+
+.usersLink, .usersLink:visited, .usersLink:focus, .usersLink:hover, .usersLink:active, .usersLink:link {
+    text-decoration: none;
+}
+
+.usersName {
+    color: black;
+}

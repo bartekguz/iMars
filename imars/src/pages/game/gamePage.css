@@ -1,0 +1,18 @@
+.gameWrapper {
+    display: flex;
+}
+
+.game {
+    flex: 9;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.gameOver {
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

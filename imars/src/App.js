@@ -8,7 +8,10 @@ import Home from './pages/home/Home';
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import Welcome from "./pages/welcome/Welcome";
+import Messenger from "./pages/messenger/Messenger";
 import { AuthContext } from "./context/AuthContext";
+import Users from "./pages/users/Users";
+import GamePage from "./pages/game/GamePage";
 
 const App = () => {
 
@@ -34,7 +37,19 @@ const App = () => {
                 </Route>
 
                 <Route path='/profile/:id'>
-                    {user ? <Profile /> : <Welcome />}
+                    {user ? <Profile /> : <Redirect to='/' />}
+                </Route>
+
+                <Route path='/messenger'>
+                    {user ? <Messenger /> : <Redirect to='/' />}
+                </Route>
+
+                <Route path='/users'>
+                    {user ? <Users /> : <Redirect to='/' />}
+                </Route>
+
+                <Route path='/game'>
+                    {user ? <GamePage /> : <Redirect to='/' />}
                 </Route>
 
                 <Route path='/*'>

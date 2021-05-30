@@ -94,7 +94,7 @@ const Profile = () => {
                         <Feed id={paramsUserId} />
                     </div>
                 </div>
-                <RightBar user={user} />
+                <RightBar id={paramsUserId} />
             </div>
 
         </>

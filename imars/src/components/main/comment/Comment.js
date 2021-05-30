@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import './comment.css';
-import {More, MoreVert} from "@material-ui/icons";
+import { MoreVert} from "@material-ui/icons";
 import rocketPng from '../../../assets/post/rocket.png';
 import likedRocketPng from '../../../assets/post/likedrocket.png';
 import axios from "axios";
@@ -24,7 +24,7 @@ const Comment = ({ comment, likes, liked, commentUser }) => {
     }
 
     return (
-        <div className="commentWrapper bg-white-80">
+        <div className="commentWrapper bg-black-10">
             <div className="commentTop">
                 <div className="commentTopLeft">
                     <Link to={`/profile/${commentUser.id}`}>

@@ -7,7 +7,7 @@ import { AuthContext } from "../../../context/AuthContext";
 import swal from "sweetalert";
 import {logoutCall} from "../../../apiCalls";
 
-const Navigation = ({ login, register }) => {
+const Navigation = ({ login, register, users }) => {
 
     const { user, dispatch } = useContext(AuthContext);
     const history = useHistory();
@@ -53,7 +53,6 @@ const Navigation = ({ login, register }) => {
     const SearchBar = () => {
         return (
             <div className="searchBar">
-                {/*<input placeholder="Search for friends or posts" className="searchInput"/>*/}
             </div>
         )
     }
@@ -76,7 +75,7 @@ const Navigation = ({ login, register }) => {
 
 
                 <div className="navCenter">
-                    {!login && !register ? <SearchBar /> : null}
+
                 </div>
 
                 {login || register ? <LoginNav /> : <HomeNav />}
