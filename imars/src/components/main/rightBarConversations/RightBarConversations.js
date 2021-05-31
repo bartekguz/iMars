@@ -29,7 +29,7 @@ const RightBarConversations = () => {
                 <h3 className="gameRecordsTitle">Conversations</h3>
                 <ul className="gameRecordsList">
                     {conversations.map((c) => {
-                        return <UsersConversations key={c.id} conversation={c.conv} secondUser={c.secondUser} />
+                        return <UsersConversations key={c.conv.id} conversation={c.conv} secondUser={c.secondUser} />
                     })}
                 </ul>
             </div>

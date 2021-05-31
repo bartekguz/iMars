@@ -11,8 +11,20 @@
 }
 
 .gameOver {
+    position: absolute;
+    top: 50%;
     border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+
+}
+
+.gameStart {
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    height: 40px;
 }

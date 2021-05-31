@@ -1,16 +1,15 @@
 import React, {useContext, useEffect, useState} from 'react';
 import './rightBar.css';
-import { Users } from '../../fakeData';
 import UsersFriendsList from "../usersFriendsList/UsersFriendsList";
 import UsersGameRecords from "../usersGameRecords/UsersGameRecords";
 import axios from "axios";
 import {AuthContext} from "../../../context/AuthContext";
 
-//TODO GAME RECORDS
 const RightBar = ({ id }) => {
 
     const { user } = useContext(AuthContext);
     const [friends, setFriends] = useState([]);
+    const [records, setRecords] = useState([]);
 
     useEffect(() => {
         let isMounted = true;
@@ -26,13 +25,29 @@ const RightBar = ({ id }) => {
         return () => { isMounted = false}
     }, [user.id])
 
+    useEffect(() => {
+        let isMounted = true;
+        const getRecords = async () => {
+            try {
+                const res = id
+                    ? await axios.get(`/games/${id}`)
+                    : await axios.get("/games/top3")
+                if (isMounted) setRecords(res.data);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        getRecords();
+        return () => { isMounted = false}
+    }, [id])
+
     const HomeRightbar = () => {
         return (
             <>
-                <h3 className="gameRecordsTitle">Today's game records</h3>
+                <h3 className="gameRecordsTitle">Top 3 game records</h3>
                 <ul className="gameRecordsList">
-                    {Users.map((u) => {
-                        return <UsersGameRecords key={u.id} user={u} />
+                    {records.map((u) => {
+                        return <UsersGameRecords key={u.game.id} points={u.game.points} user={u.user} />
                     })}
                 </ul>
             </>
@@ -44,8 +59,8 @@ const RightBar = ({ id }) => {
             <>
                 <h3 className="gameRecordsTitle">Personal's game records</h3>
                 <ul className="gameRecordsList">
-                    {Users.map((u) => {
-                        return <UsersGameRecords key={u.id} user={u} />
+                    {records.map((u) => {
+                        return <UsersGameRecords key={u.game.id} points={u.game.points} user={u.user} />
                     })}
                 </ul>
             </>

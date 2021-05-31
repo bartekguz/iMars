@@ -9,8 +9,8 @@ const UsersFriendsList = ({ user }) => {
                 <Link to={`/profile/${user.id}`}>
                     {user && <img src={`https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="postProfileImage" className="friendsListProfileImg"/>}
                 </Link>
-                <span className="friendsListOnline">
-                </span>
+                {/*<span className="friendsListOnline">*/}
+                {/*</span>*/}
             </div>
             <span className="friendsListUsername">{user.name + ' ' + user.lastname}</span>
         </li>

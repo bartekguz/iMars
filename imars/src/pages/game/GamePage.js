@@ -12,6 +12,7 @@ import Navigation from "../../components/main/navigation/Navigation";
 import Menu from "../../components/main/menu/Menu";
 import RightBar from "../../components/main/rightBar/RightBar";
 import './gamePage.css';
+import axios from "axios";
 
 const GamePage = () => {
 
@@ -24,9 +25,14 @@ const GamePage = () => {
 
     useInterval(() => gameLoop(), speed);
 
-    const endGame = () => {
+    const endGame = async () => {
         setSpeed(null);
         setGameOver(true);
+
+        const data = new FormData();
+        data.append("points", snake.length-2);
+
+        await axios.post('/games', data);
     };
 
     const moveSnake = ({ keyCode }) =>
@@ -96,6 +102,7 @@ const GamePage = () => {
             <div className="gameWrapper">
                 <Menu />
                     <div className="game">
+                        <div className="black bg-white-90 f2 w-30 gameStart" onClick={startGame}>Start</div>
                         <div id="canvas" role="button" tabIndex="0" onKeyDown={e => moveSnake(e)}>
                             <canvas
                                 style={{ width: '100%', backgroundColor: '#E5E5E5' }}
@@ -104,12 +111,11 @@ const GamePage = () => {
                                 height={`${CANVAS_SIZE[1]}px`}
                             />
                         </div>
-                        <button className="w4 h2 ml2 f5 dim ph3 bn dib black bg-near-white" onClick={startGame}>Start Game</button>
                         <br/>
-                        {gameOver && <div className="black bg-white-90 f1 w-100 gameOver">GAME OVER! You gained {snake.length-2} points.</div>}
+                        {gameOver && <div className="black bg-white-90 f3 w-30 gameOver">GAME OVER! You gained {snake.length-2} points.</div>}
                     </div>
 
-                <RightBar />
+                <RightBar snake={snake}/>
             </div>
         </>
     )

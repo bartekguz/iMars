@@ -11,6 +11,7 @@ import {Add, Remove} from '@material-ui/icons';
 import {AuthContext} from "../../context/AuthContext";
 
 const Profile = () => {
+
     const [user, setUser] = useState({});
     const { user: currentUser } = useContext(AuthContext);
     const paramsUserId = useParams().id;

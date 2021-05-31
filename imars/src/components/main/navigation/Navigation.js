@@ -50,12 +50,12 @@ const Navigation = ({ login, register, users }) => {
         )
     }
 
-    const SearchBar = () => {
-        return (
-            <div className="searchBar">
-            </div>
-        )
-    }
+    // const SearchBar = () => {
+    //     return (
+    //         <div className="searchBar">
+    //         </div>
+    //     )
+    // }
 
 
         return (

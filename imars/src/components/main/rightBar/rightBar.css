@@ -32,6 +32,10 @@
     scrollbar-width: none;
 }
 
+.gameRecordsList {
+    height: 230px;
+}
+
 ::-webkit-scrollbar {
     display: none;
 }
