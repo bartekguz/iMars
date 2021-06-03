@@ -14,33 +14,32 @@
 }
 
 .chat {
-    flex: 9;
-}
-
-.chatWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-}
-
-.chatTop {
-    height: 100%;
+    height: calc(100vh - 190px);
     overflow-y: scroll;
-    padding-right: 10px;
+    scrollbar-width: none;
+    border-radius: 20px;
 }
 
-.chatBottom {
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.messenger {
+    flex: 9;
+    border-radius: 20px;
+}
+
+.messages {
+    font-size: 24px;
+    padding: 1rem 1rem;
+    border-radius: 20px;
+    width: 100%;
 }
 
 .chatMessageInput {
-    width: 80%;
-    height: 90px;
-    padding: 10px;
+    border: none;
+    width: 40%;
+    height: 35px;
+    background-color: white;
+    border-radius: 20px;
+    padding-left: 10px;
+    margin-left: 20px;
 }
 
 .chatSubmitButton {
@@ -58,11 +57,14 @@
 }
 
 .noMessages {
-    position: absolute;
-    top: 10%;
-    font-size: 50px;
+    display: flex;
+    flex: 9;
+    font-size: 40px;
     color: rgb(224, 220, 220);
-    cursor: default;
+    height: calc(100vh - 190px);
+    justify-content: center;
+    padding-top: 10%;
+    text-align: center;
 }
 
 .conversationsWrapper, .chatWrapper, .onlineFriendsWrapper {

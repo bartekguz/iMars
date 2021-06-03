@@ -28,7 +28,7 @@
 
 .friendsList {
     overflow-y: scroll;
-    height: 220px;
+    height: 230px;
     scrollbar-width: none;
 }
 

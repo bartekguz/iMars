@@ -39,6 +39,31 @@ const AuthReducer = (state, action) => {
                 error: action.payload
             };
 
+        case "UPDATE_USER":
+            return {
+                user: action.payload,
+                error: false
+            };
+
+        case "UPDATE_USER_FAILURE":
+            return {
+                isFetching: false,
+                error: action.payload
+            };
+
+        case "DELETE_USER":
+            localStorage.clear();
+
+            return {
+                user: null,
+                error: false
+            };
+
+        case "DELETE_USER_FAILURE":
+            return {
+                error: action.payload
+            };
+
         default:
             return state;
     }

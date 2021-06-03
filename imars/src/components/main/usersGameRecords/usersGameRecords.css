@@ -6,6 +6,11 @@
     justify-content: center;
 }
 
+.gameRecordsHorizontal {
+    display: flex;
+    flex-direction: column;
+}
+
 .gameRecordsProfileImgContainer {
     margin: 0 10px 0 10px;
     position: relative;
@@ -21,11 +26,19 @@
 .gameRecordsUsername {
     font-weight: normal;
     font-size: 17px;
+    color: black
 }
 
 .gameRecordsCounter {
     margin-left: 30px;
     font-weight: bolder;
+    color: black
+}
+
+.gameRecordsCounterHorizontal {
+    margin-left: 30px;
+    font-weight: bolder;
+    color: black;
 }
 
 @media (max-width: 1300px) {
@@ -36,4 +49,21 @@
     .gameRecordsCounter {
         margin: 0 5px 0 5px;
     }
+}
+
+.usersRecordsListLink, .usersRecordsListLink:visited, .usersRecordsListLink:focus, .usersRecordsListLink:hover, .usersRecordsListLink:active, .usersRecordsListLink:link {
+    text-decoration: none;
+}
+
+.recordsItem {
+    display: flex;
+    height: 70px;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-left: 90px;
+}
+
+.gameRecordsText {
+    margin-left: 10px;
+    font-size: 18px;
 }

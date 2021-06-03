@@ -107,6 +107,10 @@ html {
     align-items: center;
 }
 
+.updateImage {
+    object-fit: cover;
+}
+
 
 
 

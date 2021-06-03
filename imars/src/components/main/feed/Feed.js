@@ -5,7 +5,7 @@ import Post from "../post/Post";
 import axios from "axios";
 import {AuthContext} from "../../../context/AuthContext";
 
-const Feed = ({ id }) => {
+const Feed = ({ id, updateUser }) => {
 
     const [posts, setPosts] = useState([]);
     const { user } = useContext(AuthContext);
@@ -22,7 +22,7 @@ const Feed = ({ id }) => {
 
         fetchPosts();
         return () => { isMounted = false };
-    }, [id, update])
+    }, [id, update, updateUser])
 
 
     return (

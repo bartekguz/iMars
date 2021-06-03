@@ -58,12 +58,7 @@
     font-size: 16px;
 }
 
-.commentCommentText {
-    cursor: pointer;
-    font-size: 16px;
-    margin-right: 5px;
-}
-
 .commentText {
     font-size: 17px;
+    margin-right: 5px;
 }

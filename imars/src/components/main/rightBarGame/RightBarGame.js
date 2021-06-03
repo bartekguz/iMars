@@ -28,7 +28,7 @@ const RightBarGame = ({ update }) => {
         let isMounted = true;
         const getPersonalRecords = async () => {
             try {
-                const res = await axios.get(`/games/${user.id}`)
+                const res = await axios.get(`/games/best`)
                 if (isMounted) setPersonalRecords(res.data);
             } catch (e) {
                 console.log(e);
@@ -36,7 +36,7 @@ const RightBarGame = ({ update }) => {
         }
         getPersonalRecords();
         return () => { isMounted = false }
-    }, [user.id, update])
+    }, [update])
 
     return (
         <div className="rightbar">
@@ -53,9 +53,7 @@ const RightBarGame = ({ update }) => {
                 <div className="gameRecordsContainer bg-white-90">
                     <h3 className="gameRecordsTitle">Personal's records</h3>
                     <ul className="gameRecordsList">
-                        {personalRecords.map((u) => {
-                            return <UsersGameRecords key={u.game.id} points={u.game.points} user={u.user} />
-                        })}
+                        <UsersGameRecords bests={personalRecords} gamePage/>
                     </ul>
                 </div>
             </div>

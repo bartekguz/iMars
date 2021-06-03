@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import Navigation from "../../components/main/navigation/Navigation";
-import Menu from "../../components/main/menu/Menu";
+import {default as MenuComponent} from "../../components/main/menu/Menu";
 import RightBar from "../../components/main/rightBar/RightBar";
 import './profile.css';
 import Feed from "../../components/main/feed/Feed";
@@ -16,10 +16,13 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
 import Dialog from "@material-ui/core/Dialog";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import {deleteUserCall, updateCall} from "../../apiCalls";
 
 const Profile = () => {
 
-    const { user: currentUser } = useContext(AuthContext);
+    const { user: currentUser, dispatch } = useContext(AuthContext);
 
     const [user, setUser] = useState({});
     const paramsUserId = useParams().id;
@@ -27,20 +30,52 @@ const Profile = () => {
     const [isFriend, setIsFriend] = useState(false);
     const [updateFriends, setUpdateFriends] = useState();
     const [updateUser, setUpdateUser] = useState();
-    const [open, setOpen] = useState(false);
     const [file, setFile] = useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [openEdit, setOpenEdit] = useState(false);
+    const [openDelete, setOpenDelete] = useState(false);
 
     const nameField = useRef(currentUser.name);
-    const lastnameField = useRef(currentUser.lastname);
-    const genderField = useRef(currentUser.gender);
-    const locationField = useRef(currentUser.location);
+    const [name] = useState(currentUser.name)
 
-    const handleClickOpen = () => {
-        setOpen(true);
+    const lastnameField = useRef(currentUser.lastname);
+    const [lastname] = useState(currentUser.lastname)
+
+    const genderField = useRef(currentUser.gender);
+    const [gender] = useState(currentUser.gender)
+
+    const locationField = useRef(currentUser.location);
+    const [location] = useState(currentUser.location)
+
+
+
+    const handleDelete = async () => {
+        try {
+            deleteUserCall()
+            handleClose();
+            history.push('/welcome');
+            await swal("Success!", "You deleted account correctly!", "success");
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    const handleClickButton = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClickOpenEdit = () => {
+        setOpenEdit(true)
+    };
+
+    const handleClickOpenDelete = () => {
+        setOpenDelete(true);
     };
 
     const handleClose = () => {
-        setOpen(false);
+        setAnchorEl(null);
+        setOpenEdit(false);
+        setOpenDelete(false);
     };
 
 
@@ -101,9 +136,7 @@ const Profile = () => {
         data.append("_method", "PATCH");
 
         try {
-            await axios.post("/users", data);
-            const res = await axios.get("/users");
-            await localStorage.setItem("user", JSON.stringify(res.data))
+            updateCall(data, dispatch);
             setUpdateUser(Date().toLocaleString())
         } catch (e) {
             await swal("Ops!", `You have to provide data!`, "error");
@@ -114,7 +147,7 @@ const Profile = () => {
         <>
             <Navigation updateUser={updateUser} />
             <div className="profileWrapper">
-                <Menu />
+                <MenuComponent />
 
                 <div className="profile">
 
@@ -122,11 +155,20 @@ const Profile = () => {
 
                         <div className="profileTop">
                             {currentUser.id === parseInt(paramsUserId) &&
-                            <Button aria-controls="simple-menu" aria-haspopup="true" className="editButton" onClick={handleClickOpen}>
-                                <b>Edit</b>
+                            <Button aria-controls="simple-menu" aria-haspopup="true" className="editButton" onClick={handleClickButton}>
+                                <b>...</b>
                             </Button>}
 
-                            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                            <Menu
+                                id="simple-menu"
+                                anchorEl={anchorEl}
+                                keepMounted
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={handleClickOpenEdit}>Edit</MenuItem>
+
+                            <Dialog open={openEdit} onClose={handleClose} aria-labelledby="form-dialog-title">
                                 <DialogTitle id="form-dialog-title">Edit</DialogTitle>
                                 <DialogContent>
                                     <DialogContentText>
@@ -150,7 +192,7 @@ const Profile = () => {
                                         </Button>
                                         {file && (
                                         <div className="updateImgContainer">
-                                            <img className="h4 w4" src={URL.createObjectURL(file)} alt="" />
+                                            <img className="h4 w4 updateImage" src={URL.createObjectURL(file)} alt="" />
                                             <Cancel className="updateCancel" onClick={() => setFile(null)}/>
                                         </div>
                                         )}
@@ -161,7 +203,7 @@ const Profile = () => {
                                             margin="dense"
                                             id="name"
                                             type="text"
-                                            defaultValue={nameField.current}
+                                            defaultValue={name}
                                             inputRef={nameField}
                                             fullWidth
                                         />
@@ -171,7 +213,7 @@ const Profile = () => {
                                             margin="dense"
                                             id="lastname"
                                             type="text"
-                                            defaultValue={lastnameField.current}
+                                            defaultValue={lastname}
                                             inputRef={lastnameField}
                                             fullWidth
                                         />
@@ -181,7 +223,7 @@ const Profile = () => {
                                             margin="dense"
                                             id="gender"
                                             type="text"
-                                            defaultValue={genderField.current}
+                                            defaultValue={gender}
                                             inputRef={genderField}
                                             fullWidth
                                         />
@@ -191,7 +233,7 @@ const Profile = () => {
                                             margin="dense"
                                             id="location"
                                             type="text"
-                                            defaultValue={locationField.current}
+                                            defaultValue={location}
                                             inputRef={locationField}
                                             fullWidth
                                         />
@@ -204,6 +246,31 @@ const Profile = () => {
                                     </Button>
                                 </DialogActions>
                             </Dialog>
+
+                                <MenuItem onClick={handleClickOpenDelete}>Delete</MenuItem>
+                                <Dialog
+                                    open={openDelete}
+                                    onClose={handleClose}
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                >
+                                    <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
+                                    <DialogContent>
+                                        <DialogContentText id="alert-dialog-description">
+                                            Do you really want to delete your account?
+                                        </DialogContentText>
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={handleClose} color="primary">
+                                            Disagree
+                                        </Button>
+                                        <Button onClick={handleDelete} color="primary" autoFocus>
+                                            Agree
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
+
+                            </Menu>
 
                             {user.name && <img className="profileUserImg" src={user.avatar ? `http://localhost:8000/storage/${user.avatar}` : `https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="profileimg"/>}
                         </div>
@@ -227,7 +294,7 @@ const Profile = () => {
 
 
                     <div className="profileBottom">
-                        <Feed id={paramsUserId} />
+                        <Feed id={paramsUserId} updateUser={updateUser}/>
                     </div>
                 </div>
                 <RightBar id={paramsUserId} updateFriends={updateFriends} updateUser={updateUser} />

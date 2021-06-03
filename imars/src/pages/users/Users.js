@@ -15,22 +15,21 @@ const Users = () => {
         let isMounted = true;
         const getUsers = async () => {
             try {
-                const usersList = await axios.get('/allusers');
-                if (isMounted) setUsersList(usersList.data.users);
+                const res = await axios.get('/allusers');
+                if (isMounted) setUsersList(res.data.users);
             } catch (e) {
                 console.log(e);
             }
         }
         getUsers();
         return () => { isMounted = false}
-    }, [])
+    },[])
 
     const onSearchChange = (event) => {
-        console.log(event.target.value)
         setSearchfield(event.target.value)
     }
 
-    let filteredUsers = usersList.filter(user => user.name.toLowerCase().includes(searchfield.toLowerCase()))
+    let filteredUsers = usersList.filter(user => user.lastname.toLowerCase().includes(searchfield.toLowerCase()))
 
     return (
         <>

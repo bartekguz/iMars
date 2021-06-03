@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import './rightBarConversations.css';
+import '../rightBar/rightBar.css';
 import axios from "axios";
 import UsersConversations from "../usersConversations/UsersConversations";
 import UsersFriendsList from "../usersFriendsList/UsersFriendsList";
 
-const RightBarConversations = () => {
+const RightBarConversations = ({ setCurrentChat, setSecondUser, updateConversations }) => {
 
     const [conversations, setConversations] = useState([]);
     const [users, setUsers] = useState([]);
@@ -28,27 +28,27 @@ const RightBarConversations = () => {
         const getConversations = async () => {
             try {
                 const conversationsList = await axios.get(`/conversations`);
-                if (isMounted) {
-                    setConversations(conversationsList.data);
-                }
+                if (isMounted) setConversations(conversationsList.data);
             } catch (e) {
                 console.log(e);
             }
         }
         getConversations();
         return () => { isMounted = false}
-    }, [])
+    }, [updateConversations])
 
     return (
         <div className="rightbar">
             <div className="rightbarWrapper">
 
                 <div className="gameRecordsContainer bg-white-90">
-                    <h3 className="gameRecordsTitle">Conversations</h3>
-                    <ul className="gameRecordsList">
-                        {conversations.map((c) => {
-                            return <UsersConversations key={c.conv.id} conversation={c.conv} secondUser={c.secondUser} />
-                        })}
+                    <h3 className="friendsListTitle">Conversations</h3>
+                    <ul className="friendsList">
+                        {conversations.map((c) => (
+                            <div className="dim" onClick={() => setCurrentChat(c)}>
+                                <UsersConversations key={c.conv.id} conversation={c.conv} secondUser={c.secondUser}/>
+                            </div>
+                        ))}
                     </ul>
                 </div>
 
@@ -56,7 +56,9 @@ const RightBarConversations = () => {
                     <h3 className="friendsListTitle">Users</h3>
                     <ul className="friendsList">
                         {users.map((u) => (
-                            <UsersFriendsList key={u.id} user={u} conversation/>
+                            <div className="dim" onClick={() => setSecondUser(u)}>
+                                <UsersFriendsList key={u} user={u} conversation/>
+                            </div>
                         ))}
                     </ul>
                 </div>

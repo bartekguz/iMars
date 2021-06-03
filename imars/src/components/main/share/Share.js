@@ -22,8 +22,10 @@ const Share = ({ setState }) => {
         }
 
         try {
-           await axios.post("/posts", data);
-           setState(Date().toLocaleString())
+            await axios.post("/posts", data);
+            setState(Date().toLocaleString())
+            desc.current.value = ''
+            setFile(null)
         } catch (e) {
 
         }

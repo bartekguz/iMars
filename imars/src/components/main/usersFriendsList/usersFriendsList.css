@@ -32,4 +32,15 @@
 .friendsListUsername {
     font-weight: normal;
     font-size: 17px;
+    color: black
+}
+
+@media (max-width: 1300px) {
+    .friendsListProfileImg {
+        display: none;
+    }
+}
+
+.usersFriendListLink, .usersFriendListLink:visited, .usersFriendListLink:focus, .usersFriendListLink:hover, .usersFriendListLink:active, .usersFriendListLink:link {
+    text-decoration: none;
 }
