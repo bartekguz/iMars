@@ -4,7 +4,7 @@ import {Cancel, PermMedia} from "@material-ui/icons";
 import {AuthContext} from "../../../context/AuthContext";
 import axios from "axios";
 
-const Share = () => {
+const Share = ({ setState }) => {
 
     const { user } = useContext(AuthContext);
     const desc = useRef();
@@ -23,7 +23,7 @@ const Share = () => {
 
         try {
            await axios.post("/posts", data);
-           window.location.reload()
+           setState(Date().toLocaleString())
         } catch (e) {
 
         }
@@ -33,7 +33,7 @@ const Share = () => {
         <div className="share bg-white-90 shadow-5">
             <div className="shareWrapper">
                 <div className="shareTop">
-                    <img className="shareImage" src={`https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="logo"/>
+                    <img className="shareImage" src={user.avatar ? `http://localhost:8000/storage/${user.avatar}` : `https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="logo"/>
                     <input placeholder={`What's in your mind ${user.name}?`} className="shareInput" ref={desc}/>
                 </div>
                 <hr className="shareHr"/>

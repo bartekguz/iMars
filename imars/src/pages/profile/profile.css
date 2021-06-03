@@ -21,12 +21,43 @@ html {
     margin-top: 40px;
     height: 210px;
     position: relative;
+    display: flex;
+}
+
+.editSubmitButton {
+    padding: 9px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+
+}
+
+.editButton {
+    margin: 10px 20px 0 auto !important;
+    height: 50px;
+    font-size: 16px !important;
+}
+
+.updateCancel {
+    position: absolute;
+    left: 150px;
+    top: 20px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.updateImgContainer {
+    position: relative;
+    padding: 20px 0 0 10px;
 }
 
 .bg {
     border-radius: 25px;
     margin-bottom: 10px;
-    height: 400px;
+    height: 450px;
 }
 
 .profileBottom {
@@ -60,6 +91,7 @@ html {
 
 .profileInfoDesc {
     font-weight: lighter;
+    padding-top: 12px;
 }
 
 .profileFollowButton {

@@ -7,7 +7,7 @@ import { AuthContext } from "../../../context/AuthContext";
 import swal from "sweetalert";
 import {logoutCall} from "../../../apiCalls";
 
-const Navigation = ({ login, register, users }) => {
+const Navigation = ({ login, register }) => {
 
     const { user, dispatch } = useContext(AuthContext);
     const history = useHistory();
@@ -43,20 +43,12 @@ const Navigation = ({ login, register, users }) => {
         return (
         <div className="navRight">
             <Link to={`/profile/${user.id}`} style={{textDecoration: 'none'}}>
-                <img src={`https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} className="br-100 mr3 ba navImage" alt="avatar"/>
+                <img src={user.avatar ? `http://localhost:8000/storage/${user.avatar}` : `https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} className="br-100 mr3 ba navImage" alt="avatar"/>
             </Link>
             <p onClick={handleClick} className="f4 link b dim white pointer ttu tracked">Sign Out</p>
         </div>
         )
     }
-
-    // const SearchBar = () => {
-    //     return (
-    //         <div className="searchBar">
-    //         </div>
-    //     )
-    // }
-
 
         return (
             <div className="navContainer">

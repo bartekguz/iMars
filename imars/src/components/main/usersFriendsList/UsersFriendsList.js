@@ -2,13 +2,17 @@ import React from 'react';
 import './usersFriendsList.css';
 import {Link} from "react-router-dom";
 
-const UsersFriendsList = ({ user }) => {
+const UsersFriendsList = ({ user, conversation }) => {
+
     return (
         <li className="friendsItem">
             <div className="friendsListProfileImgContainer">
+                {conversation ?
+                    <img src={user.avatar ? `http://localhost:8000/storage/${user.avatar}` : `https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="postProfileImage" className="friendsListProfileImg" />
+                :
                 <Link to={`/profile/${user.id}`}>
-                    {user && <img src={`https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="postProfileImage" className="friendsListProfileImg"/>}
-                </Link>
+                    {user && <img src={user.avatar ? `http://localhost:8000/storage/${user.avatar}` : `https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="postProfileImage" className="friendsListProfileImg"/>}
+                </Link>}
                 {/*<span className="friendsListOnline">*/}
                 {/*</span>*/}
             </div>

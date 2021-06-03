@@ -10,9 +10,10 @@ import {
 } from "./constants";
 import Navigation from "../../components/main/navigation/Navigation";
 import Menu from "../../components/main/menu/Menu";
-import RightBar from "../../components/main/rightBar/RightBar";
+import RightBarGame from "../../components/main/rightBarGame/RightBarGame";
 import './gamePage.css';
 import axios from "axios";
+
 
 const GamePage = () => {
 
@@ -22,6 +23,7 @@ const GamePage = () => {
     const [dir, setDir] = useState([0, -1]);
     const [speed, setSpeed] = useState(null);
     const [gameOver, setGameOver] = useState(false);
+    const [update, setUpdate] = useState();
 
     useInterval(() => gameLoop(), speed);
 
@@ -33,6 +35,7 @@ const GamePage = () => {
         data.append("points", snake.length-2);
 
         await axios.post('/games', data);
+        setUpdate(Date().toLocaleString())
     };
 
     const moveSnake = ({ keyCode }) =>
@@ -115,7 +118,7 @@ const GamePage = () => {
                         {gameOver && <div className="black bg-white-90 f3 w-30 gameOver">GAME OVER! You gained {snake.length-2} points.</div>}
                     </div>
 
-                <RightBar snake={snake}/>
+                <RightBarGame update={update}/>
             </div>
         </>
     )

@@ -9,6 +9,7 @@ const Feed = ({ id }) => {
 
     const [posts, setPosts] = useState([]);
     const { user } = useContext(AuthContext);
+    const [update, setUpdate] = useState('');
 
     useEffect( () => {
         let isMounted = true;
@@ -21,14 +22,15 @@ const Feed = ({ id }) => {
 
         fetchPosts();
         return () => { isMounted = false };
-    }, [id])
+    }, [id, update])
+
 
     return (
         <div className={`${id ? "profileCenterPosts" : "centerPosts"}`}>
             <div className="centerPostsWrapper">
-                {(!id || id === user.id) && <Share/>}
+                {(!id || id === user.id) && <Share setState={(update) => {setUpdate(update)}}/>}
                 {posts.map((p) => (
-                    <Post key={p.post.id} post={p.post} likes={p.likes} liked={p.liked} postUser={p.user} />
+                    <Post key={p.post.id} post={p.post} likes={p.likes} liked={p.liked} postUser={p.user} setState={(update) => {setUpdate(update)}} />
                 ))}
             </div>
         </div>

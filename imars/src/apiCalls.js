@@ -19,6 +19,7 @@ export const loginCall = async (userCredentials, dispatch) => {
     }
 }
 
+
 export const logoutCall = async (dispatch) => {
     try {
         await axios.post("/logout");

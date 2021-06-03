@@ -8,7 +8,7 @@ const UserCard = ({ user }) => {
         <article className="bg-white-90 h5 br3 ma2 pa3 grow shadow-5 articleWrapper">
             <div className="tc">
 
-                    {user && <img src={`https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="profileImage" className="userImage"/>}
+                    {user && <img src={user.avatar ? `http://localhost:8000/storage/${user.avatar}` : `https://eu.ui-avatars.com/api/?name=${user.name + ' ' + user.lastname}`} alt="profileImage" className="userImage"/>}
 
                 {user && <h1 className="f4 usersName">{user.name + ' ' + user.lastname}</h1>}
 

@@ -5,7 +5,7 @@ import UsersGameRecords from "../usersGameRecords/UsersGameRecords";
 import axios from "axios";
 import {AuthContext} from "../../../context/AuthContext";
 
-const RightBar = ({ id }) => {
+const RightBar = ({ id, updateFriends, updateUser }) => {
 
     const { user } = useContext(AuthContext);
     const [friends, setFriends] = useState([]);
@@ -23,7 +23,7 @@ const RightBar = ({ id }) => {
         }
         getFriends();
         return () => { isMounted = false}
-    }, [user.id])
+    }, [user.id, updateFriends])
 
     useEffect(() => {
         let isMounted = true;
@@ -39,7 +39,7 @@ const RightBar = ({ id }) => {
         }
         getRecords();
         return () => { isMounted = false}
-    }, [id])
+    }, [id, updateUser])
 
     const HomeRightbar = () => {
         return (

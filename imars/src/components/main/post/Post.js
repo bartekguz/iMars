@@ -10,33 +10,64 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {AuthContext} from "../../../context/AuthContext";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogActions from "@material-ui/core/DialogActions";
+import Dialog from "@material-ui/core/Dialog";
+import TextField from "@material-ui/core/TextField";
 
-const Post = ({ post, likes, liked, postUser }) => {
+const Post = ({ post, likes, liked, postUser, setState}) => {
     const { user } = useContext(AuthContext);
+
+    const textField = useRef('');
+    const desc = useRef('');
+
     const [numberOfLikes, setNumberOfLikes] = useState(likes);
     const [likedByCurrentUser, setLikedByCurrentUser] = useState(liked);
     const [visibility, setVisibility] = useState(false);
     const [comments, setComments] = useState([]);
-    const desc = useRef();
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [openEdit, setOpenEdit] = useState(false);
+    const [openDelete, setOpenDelete] = useState(false);
 
-    const handleClick = (event) => {
+    const handleClickButton = (event) => {
         setAnchorEl(event.currentTarget);
+    };
+
+    const handleClickOpenEdit = () => {
+        setOpenEdit(true)
+    };
+
+    const handleClickOpenDelete = () => {
+        setOpenDelete(true)
     };
 
     const handleClose = () => {
         setAnchorEl(null);
+        setOpenEdit(false);
+        setOpenDelete(false);
     };
 
     const handleDelete = async () => {
-        await axios.delete(`/posts/${post.id}`);
-        handleClose();
-        window.location.reload();
+        try {
+            await axios.delete(`/posts/${post.id}`);
+            handleClose();
+            setState(Date().toLocaleString())
+        } catch (e) {
+            console.log(e)
+        }
     }
 
-    const handleEdit = () => {
-        handleClose();
+    const handleEdit = async () => {
+        try {
+            await axios.patch(`/posts/${post.id}`, { body: textField.current.value })
+            handleClose();
+            setState(Date().toLocaleString())
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     const rocketHandler = async () => {
@@ -80,14 +111,14 @@ const Post = ({ post, likes, liked, postUser }) => {
                 <div className="postTop">
                     <div className="postTopLeft">
                         <Link to={`/profile/${postUser.id}`}>
-                            {postUser && <img src={`https://eu.ui-avatars.com/api/?name=${postUser.name + ' ' + postUser.lastname}`} alt="postProfileImage" className="postProfileImage"/>}
+                            {postUser && <img src={postUser.avatar ? `http://localhost:8000/storage/${postUser.avatar}` : `https://eu.ui-avatars.com/api/?name=${postUser.name + ' ' + postUser.lastname}`} alt="postProfileImage" className="postProfileImage"/>}
                         </Link>
                         {postUser && <span className="postUsername">{postUser.name} {postUser.lastname}</span>}
                         <span className="postDate">{format(post.created_at)}</span>
                     </div>
                     {user.id === post.user_id && <div className="postTopRight">
 
-                        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClickButton}>
                             <b>...</b>
                         </Button>
                         <Menu
@@ -97,8 +128,54 @@ const Post = ({ post, likes, liked, postUser }) => {
                             open={Boolean(anchorEl)}
                             onClose={handleClose}
                         >
-                            <MenuItem onClick={handleEdit}>Edit</MenuItem>
-                            <MenuItem onClick={handleDelete}>Delete</MenuItem>
+                            <MenuItem onClick={handleClickOpenEdit}>Edit</MenuItem>
+                            <Dialog open={openEdit} onClose={handleClose} aria-labelledby="form-dialog-title">
+                                <DialogTitle id="form-dialog-title">Edit</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText>
+                                        To edit this post, enter a different content below.
+                                    </DialogContentText>
+                                    <TextField
+                                        autoFocus
+                                        margin="dense"
+                                        id="content"
+                                        type="text"
+                                        inputRef={textField}
+                                        fullWidth
+                                    />
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleClose} color="primary">
+                                        Cancel
+                                    </Button>
+                                    <Button onClick={handleEdit} color="primary">
+                                        Agree
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+
+                            <MenuItem onClick={handleClickOpenDelete}>Delete</MenuItem>
+                            <Dialog
+                                open={openDelete}
+                                onClose={handleClose}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText id="alert-dialog-description">
+                                        Do you really want to delete this post?
+                                    </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleClose} color="primary">
+                                        Disagree
+                                    </Button>
+                                    <Button onClick={handleDelete} color="primary" autoFocus>
+                                        Agree
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
                         </Menu>
 
                     </div>}
