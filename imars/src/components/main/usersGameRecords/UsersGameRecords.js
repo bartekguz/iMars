@@ -8,7 +8,7 @@ const UsersGameRecords = ({ user, points, gamePage, bests }) => {
     const gamePageRecords = () => {
         return (
             <div>
-                <li className="gameRecordsHorizontal dim">
+                <li className="gameRecordsHorizontal">
                     <div className="recordsItem">
                         <Today fontSize='large'/>
                         <span className="gameRecordsText">Today</span>

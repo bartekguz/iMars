@@ -21,7 +21,7 @@ const Message = ({ message, user }) => {
                 </Link>
 
                 {user && <span className="messageUsername">{user.name} {user.lastname}</span>}
-                {user && <span className='messageDate'>{format(message.created_at)}</span>}
+
             </div>
 
             <div className="messageCenter">

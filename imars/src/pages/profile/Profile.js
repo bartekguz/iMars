@@ -51,7 +51,7 @@ const Profile = () => {
 
     const handleDelete = async () => {
         try {
-            deleteUserCall()
+            deleteUserCall(dispatch)
             handleClose();
             history.push('/welcome');
             await swal("Success!", "You deleted account correctly!", "success");

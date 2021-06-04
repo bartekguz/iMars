@@ -96,7 +96,7 @@ const Post = ({ post, likes, liked, postUser, setState}) => {
 
         const data = new FormData();
         data.append("body", desc.current.value);
-
+        desc.current.value = ''
         try {
             await axios.post(`/posts/${post.id}/comments`, data);
             getComments(post.id)
