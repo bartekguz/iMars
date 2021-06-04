@@ -15,13 +15,22 @@ Celem projekty jest stworzenie medium społecznościowego na wzór facebooka.
 
 #### Strona startowa:
 ![alt text](https://i.ibb.co/9ThnvGF/Zrzut-ekranu-2021-05-22-132539.png)
+#### Strona rejestracji:
+![alt text](https://i.ibb.co/7WmZR7r/2.png)
 #### Strona logowania:
-![alt text](https://i.ibb.co/rGgKSRF/Zrzut-ekranu-2021-05-22-132550.png)
+![alt text](https://i.ibb.co/tcBCt1J/1.png)
 #### Strona główna:
-![alt text](https://i.ibb.co/3hnzV6Z/Zrzut-ekranu-2021-05-22-132404.png)
-![alt text](https://i.ibb.co/3T88GB2/Zrzut-ekranu-2021-05-22-132436.png)
+![alt text](https://i.ibb.co/Nm9zg0Q/3.png)
 #### Strona profilu:
-![alt text](https://i.ibb.co/XjV15sS/Zrzut-ekranu-2021-05-22-132505.png)
+![alt text](https://i.ibb.co/Jxj7yRT/4.png)
+#### Messenger:
+![alt text](https://i.ibb.co/0fd04GR/5.png)
+#### Wyszukiwanie użytkowników:
+![alt text](https://i.ibb.co/d2k5w2g/6.png)
+#### Gra:
+![alt text](https://i.ibb.co/Y2vwmBn/7.png)
+
+
 
 
 
