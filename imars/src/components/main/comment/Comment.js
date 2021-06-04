@@ -106,7 +106,7 @@ const Comment = ({ comment, likes, liked, commentUser, getComments }) => {
                                 <DialogTitle id="form-dialog-title">Edit</DialogTitle>
                                 <DialogContent>
                                     <DialogContentText>
-                                        To edit this post, enter a different content below.
+                                        To edit this comment, enter a different content below.
                                     </DialogContentText>
                                     <TextField
                                         autoFocus

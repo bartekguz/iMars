@@ -57,8 +57,8 @@ const Messenger = () => {
                 <Menu />
                 {currentChat
                     ? <div className="messenger">
-                        <div className="chat">
-                            <div className="messages bg-white-90 h-100">
+                        <div className="chat bg-white-90">
+                            <div className="messages h-100">
                                 {messages.map((p) => (
                                     <div ref={scrollRef}>
                                         <Message key={p.id} message={p.message} user={p.user} />
